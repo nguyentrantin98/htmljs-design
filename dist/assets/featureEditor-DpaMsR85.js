@@ -1,0 +1,1 @@
+import{P as r,C as o}from"./index-jL8zU13h.js";class n extends r{constructor(e=null){super(e)}Render(){o.LoadScript("https://unpkg.com/monaco-editor@0.45.0/min/vs/loader.js").then(()=>{super.Render()})}}export{n as FeatureEditor};
