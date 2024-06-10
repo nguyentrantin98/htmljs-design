@@ -1,9 +1,9 @@
 {
   "name": "htmljs-code",
-  "version": "2.0.1",
+  "version": "2.0.11",
   "description": "",
-  "main": "dist/htmljs-design.umd.js",
-  "module": "dist/htmljs-design.es.js",
+  "main": "dist/htmljs-code.umd.js",
+  "module": "dist/htmljs-code.es.js",
   "files": [
     "dist"
   ],

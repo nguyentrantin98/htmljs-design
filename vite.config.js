@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     build: {
         lib: {
-            entry: 'src/index.js',
+            entry: 'js/index.js',
             name: 'htmljsCode',
             fileName: (format) => `htmljs-code.${format}.js`
         },
