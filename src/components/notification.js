@@ -1,5 +1,5 @@
 import { Client } from "../../lib/clients/client.js";
-import EditableComponent from "../../lib/editableComponent.js";
+import { EditableComponent } from "../../lib/editableComponent.js";
 import { Toast } from "../../lib/toast.js";
 import { Utils } from "../../lib/utils/utils.js";
 import { TaskStateEnum } from "../../lib/models/enum.js"

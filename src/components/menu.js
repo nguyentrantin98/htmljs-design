@@ -1,5 +1,5 @@
 import { Client } from "../../lib/clients/client.js";
-import EditableComponent from "../../lib/editableComponent.js";
+import { EditableComponent } from "../../lib/editableComponent.js";
 import { Feature } from "../../lib/models/feature.js";
 import { Html } from "../../lib/utils/html.js";
 import EventType from "../../lib/models/eventType.js";
