@@ -13,28 +13,33 @@ npm i htmljs-code --save
 ## Usage
 
 ```javascript
-import 'htmljs-code/dist/style.css'
-import { Datepicker } from "htmljs-code";
+import 'htmljs-code/lib/css/fontawesome.min.css'
+import 'htmljs-code/lib/css/datepicker.css'
+import 'htmljs-code/lib/css/number.css'
+import 'htmljs-code/lib/css/input.css'
+import 'htmljs-code/lib/css/section.css'
+import { Datepicker, Textbox, Textarea } from "htmljs-code";
 
 # 'Datepicker'
 var com2 = new Datepicker({
-    FieldName: "Datepicker"
+    FieldName: "Datepicker",
+    ParentElement: document.body
+    
 });
-com2.ParentElement = document.querySelector(".datepicker");
 com2.Render();
 
 # 'Textbox'
 var com1 = new Textbox({
-    FieldName: "Textbox"
+    FieldName: "Textbox",
+    ParentElement: document.body
 });
-com1.ParentElement = document.querySelector(".datepicker");
 com1.Render();
 
 # 'Numbox'
 var com = new Numbox({
-    FieldName: "Numbox"
+    FieldName: "Numbox",
+    ParentElement: document.body
 });
-com.ParentElement = document.querySelector(".datepicker");
 com.Render();
 ```
 

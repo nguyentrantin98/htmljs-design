@@ -16,3 +16,16 @@ input:not([type="checkbox"]) {
 input:not([type="checkbox"]):focus {
     border: 1px solid #2ca01c;
 }
+
+textarea {
+    border-color: #ccc;
+    width: 100%;
+    border-radius: 3px;
+    resize: vertical;
+    outline: 0;
+    background-color: transparent;
+}
+
+textarea:focus {
+    border: 1px solid #2ca01c;
+}
