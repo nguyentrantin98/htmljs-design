@@ -1,0 +1,257 @@
+.datepicker {
+    position: relative;
+}
+
+.datetime-picker {
+    position: relative
+}
+
+.datetime-picker .btn-group {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: transparent;
+}
+
+.datetime-picker .btn-group button {
+    height: 26px;
+    width: 26px;
+    outline: 0;
+    background-color: transparent;
+    border: 0;
+}
+
+.calendar-container .separate-line-header {
+    position: relative;
+    border-bottom: 1px solid #e0e0e0;
+    height: 1px;
+    width: 263px;
+    top: 35px;
+    left: 20px;
+}
+
+.calendar-container .calendar-header {
+    padding: 12px 20px 8px;
+    height: 38px;
+}
+
+.calendar-container .calendar-header .icon-calendar-header {
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0, 0, 0.31, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar-container .calendar-header .left-icon:hover {
+    left: 1px;
+}
+
+.calendar-container .calendar-header .right-icon {
+    right: 0;
+    left: auto;
+}
+
+.calendar-container .calendar-header .right-icon:hover {
+    right: 1px;
+}
+
+.calendar-container .calendar-header .calender-current-date {
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.calendar-container .calendar-body {
+    color: #757575;
+    padding: 0 12px;
+}
+
+.calendar-container .calendar-body .calendar-table {
+    width: 100%;
+}
+
+.calendar-container th {
+    width: 36px;
+    height: 36px;
+    box-sizing: border-box;
+}
+
+.calendar-container td {
+    width: 36px;
+    height: 36px;
+    box-sizing: border-box;
+}
+
+.calendar-container .calendar-body .calendar-table .date-in-month {
+    text-align: center;
+}
+
+.calendar-container .calendar-body .calendar-table .date-in-month tr {
+    box-sizing: border-box;
+}
+
+.calendar-container .calendar-body .calendar-table .date-in-month tr .date-in-table:hover {
+    cursor: pointer;
+    border: 1px solid #2ca01c;
+    transition: 0.1s ease-in-out;
+}
+
+.v2-calendar tr td {
+    padding: 0 10px;
+}
+
+.v2-calendar table {
+    border-collapse: separate;
+}
+
+.calendar-container .calendar-body .separate-line {
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    height: 1px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.calendar-container .calendar-footer {
+    text-align: center;
+    padding: 8px 0 10px;
+    height: 36px;
+}
+
+.calendar-container .calendar-footer .pick-today-button {
+    border: none;
+    background: #fff;
+    color: #2ca01c;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.calendar-container {
+    z-index: 109;
+    background: #fff;
+    width: 300px;
+    height: auto;
+    border: 1px solid #babec5;
+    overflow: hidden;
+}
+
+.calendar-container .day-select {
+    background: #fff;
+    color: #000;
+}
+
+.calendar-container .date-in-month td {
+    border: 1px solid #fff;
+}
+
+.calendar-container .ms-date {
+    font-weight: 400;
+    border-radius: 50% !important;
+}
+
+.calendar-container .calendar-body .calendar-table .date-in-month tr .date-in-table:hover {
+    cursor: pointer;
+    border: 1px solid #2ca01c;
+    transition: 0.1s ease-in-out;
+}
+
+.calendar-container .ms-date-day-seleted {
+    color: #2ca01c;
+    background-color: rgba(44, 160, 28, 0.2);
+}
+
+.calendar-container .ms-date-current {
+    color: #2ca01c;
+    font-weight: 600;
+}
+
+.datepicker-content {
+    position: absolute;
+    z-index: 10000;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.justify-space {
+    justify-content: space-between !important;
+}
+
+.relative {
+    position: relative !important;
+}
+
+.align-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-container .input-time {
+    width: 40px;
+    height: 30px;
+}
+
+.calendar-container .input-time input::selection {
+    background-color: #e4e9e7;
+}
+
+.calendar-container .time {
+    justify-content: center;
+    display: flex;
+    padding: 6px 20px;
+    align-items: center;
+}
+
+.calendar-container .mr-12-px {
+    margin-right: 12px;
+}
+
+.calendar-container .mr-6-px {
+    margin-right: 6px;
+}
+
+.calendar-container .ml-6-px {
+    margin-left: 6px;
+}
+
+.calendar-container input {
+    height: 100%;
+    width: 100%;
+    text-align: right;
+    line-height: inherit;
+    color: #111;
+    border: none;
+    outline: none;
+    padding: 0.25rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    background-color: #fff;
+    background-clip: padding-box;
+}
+
+.ms-number-container .ms-number-group {
+    display: flex;
+    height: 26px;
+    border-radius: 0.15em;
+    border: 1px solid #babec5;
+}
+
+.ms-number-container .ms-number-group .ms-number-input {
+    flex: 1;
+}
+
+.ms-label {
+    text-align: center;
+    white-space: nowrap;
+    font-size: 13px;
+}
+
+.ms-label-bold {
+    font-weight: 700;
+}

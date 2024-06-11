@@ -1,0 +1,55 @@
+.tab-content .section-item>div>label {
+    display: none;
+}
+
+.section-item {
+    display: grid;
+}
+
+.group {
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0.8rem;
+    display: flex;
+}
+
+.ui-layout {
+    width: 100%;
+}
+
+.ui-layout table {
+    table-layout: auto !important;
+}
+
+.ui-layout table {
+    border-collapse: collapse;
+}
+
+.panel {
+    position: relative;
+}
+
+.panel .header {
+    position: absolute;
+    top: -0.7rem;
+    left: 0;
+    right: auto;
+    bottom: auto;
+    padding: 0 5px;
+    background-color: #fff;
+    color: #366EB9;
+    font-weight: 400;
+    font-size: 0.9rem;
+}
+
+.tab-content>div>label {
+    display: none;
+}
+
+.box-shadow {
+    box-shadow: 0 1.5px 2px #272a431c, 0 0 1px .25px #272a432e;
+    grid-gap: 1rem;
+    margin: .8rem;
+}

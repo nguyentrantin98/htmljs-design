@@ -1,0 +1,18 @@
+input:not([type="checkbox"]) {
+    font-size: 13px;
+    height: 26px;
+    color: inherit;
+    position: relative;
+    padding: 0 10px;
+    border-radius: 2px;
+    border: 1px solid #babec5;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: #fff;
+    padding: 0 12px 0 10px;
+    outline: 0;
+}
+
+input:not([type="checkbox"]):focus {
+    border: 1px solid #2ca01c;
+}

@@ -1,0 +1,88 @@
+.btn {
+    min-height: 36px;
+    min-width: 80px;
+    border: none;
+    box-shadow: none;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 4px;
+    white-space: nowrap;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.btn .text {
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0 16px;
+    padding-right: 16px;
+    font-weight: 600;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: 1px auto #a6c7ff;
+}
+
+.btn:disabled {
+    opacity: .56;
+    cursor: unset;
+}
+
+.btn.primary {
+    color: #fff;
+    background: #14aa8a;
+}
+
+.btn.primary-outline {
+    border: 1px solid #14aa8a;
+    color: #14aa8a;
+    background: #fff;
+}
+
+.btn.secondary-outline {
+    border: 1px solid #e0e0e0;
+    color: #212121;
+}
+
+.btn.secondary-outline {
+    background: #fff;
+}
+
+.btn:not(:disabled).primary:hover {
+    background: #3cc2a5;
+}
+
+.btn:not(:disabled).primary:active {
+    background: #0f9276;
+}
+
+.btn:not(:disabled).primary-outline:hover {
+    background: #e8f5f7;
+}
+
+.btn:not(:disabled).primary-outline:active {
+    background: #d8eef2;
+}
+
+.btn:not(:disabled).secondary-outline:hover {
+    background: #ebebeb;
+}
+
+.btn:not(:disabled).secondary-outline:active {
+    background: #e0e0e0;
+}
+
+button.btn {
+    padding: 9px 16px;
+}
+
+.detail-button {
+    min-width: 80px;
+    margin-left: 10px;
+}
