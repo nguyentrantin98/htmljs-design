@@ -42,6 +42,9 @@ var com = new Numbox({
 });
 com.Render();
 ```
+```bash
+npm i htmljs-code react --save
+```
 
 ```javascript
 import { Page } from "../lib/page";
