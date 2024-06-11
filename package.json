@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "7.0.6",
+  "version": "7.0.8",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -25,7 +25,6 @@
     "dayjs": "^1.11.11",
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
-    "htmljs-code": "^6.0.4",
     "jscheck": "^0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
