@@ -24,7 +24,7 @@ import { Datepicker, Textbox, Textarea } from "htmljs-code";
 var com2 = new Datepicker({
     FieldName: "Datepicker",
     ParentElement: document.body
-    
+
 });
 com2.Render();
 
@@ -41,6 +41,37 @@ var com = new Numbox({
     ParentElement: document.body
 });
 com.Render();
+```
+
+```javascript
+import { Page } from "../lib/page";
+import React from "react";
+
+export class App {
+  static Main() {
+    var app = new Page();
+    app.Meta.Layout = () => (
+      <>
+        <div className="tab-item" data-name="Test"></div>
+        <div className="tab-item" data-name="Test1"></div>
+      </>
+    );
+    app.Meta.Components = [
+      {
+        ComponentType: "Input",
+        FieldName: "Test",
+        Id: "1",
+      },
+      {
+        ComponentType: "Datepicker",
+        FieldName: "Test1",
+        Id: "1",
+      },
+    ];
+    app.Render();
+  }
+}
+App.Main();
 ```
 
 ## Contributing
