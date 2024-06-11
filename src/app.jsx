@@ -1,4 +1,13 @@
-import { EditForm } from "../lib";
+import "/lib/css/fontawesome.min.css";
+import "/lib/css/datepicker.css";
+import "/lib/css/number.css";
+import "/lib/css/input.css";
+import "/lib/css/section.css";
+import "/lib/css/gridview.css";
+import "/lib/css/main.css";
+import "/lib/css/dropdown.css";
+
+import { EditForm, Textbox } from "../lib";
 import { Page } from "../lib";
 import React from "react";
 
@@ -11,6 +20,7 @@ export class App {
         CanRead: true,
       },
     ];
+    app.Meta.ParentElement = document.getElementById('app');
     app.Meta.Layout = () => (
       <>
         <div className="wrapper">
@@ -23,7 +33,9 @@ export class App {
     );
     app.Meta.Components = [
       {
-        ComponentType: "Input",
+        ComponentType: (...args) => {
+          new Textbox(...args);
+        },
         FieldName: "Test",
         Id: "1",
       },
