@@ -36,6 +36,7 @@ export default class EditableComponent {
      */
     constructor(meta, ele = null) {
         this.Meta = meta;
+        this.ParentElement = this.Meta?.ParentElement;
         this.Element = ele;
         this.AlwaysLogHistory = false;
         this.Entity = {}

@@ -239,4 +239,6 @@ export class Component {
     Css = null;
     /** @type {string} */
     Javascript = null;
+    /** @type {HTMLElement} */
+    ParentElement = null;
 }
