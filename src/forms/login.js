@@ -1,10 +1,10 @@
-import { Client } from "../../js/clients/client.js";
-import { WebSocketClient } from "../../js/clients/websocketClient.js";
-import { KeyCodeEnum, RoleEnum } from "../../js/models/enum.js";
-import EventType from "../../js/models/eventType.js";
-import { PopupEditor } from "../../js/popupEditor.js";
-import { Toast } from "../../js/toast.js";
-import { Html } from "../../js/utils/html.js";
+import { Client } from "../../lib/clients/client.js";
+import { WebSocketClient } from "../../lib/clients/websocketClient.js";
+import { KeyCodeEnum, RoleEnum } from "../../lib/models/enum.js";
+import EventType from "../../lib/models/eventType.js";
+import { PopupEditor } from "../../lib/popupEditor.js";
+import { Toast } from "../../lib/toast.js";
+import { Html } from "../../lib/utils/html.js";
 import { NotificationBL } from "../components/notification.js";
 import { MenuComponent } from "../components/menu.js";
 

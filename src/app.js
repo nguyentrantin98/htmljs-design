@@ -1,12 +1,12 @@
-import { WebSocketClient } from "../js/clients/websocketClient.js";
-import { Client } from "../js/clients/client.js";
-import EventType from "../js/models/eventType.js";
-import { ComponentExt } from "../js/utils/componentExt.js";
-import { LangSelect } from "../js/utils/langSelect.js";
-import { Utils } from "../js/utils/utils.js";
-import { EditForm } from "../js/editForm.js";
+import { WebSocketClient } from "../lib/clients/websocketClient.js";
+import { Client } from "../lib/clients/client.js";
+import EventType from "../lib/models/eventType.js";
+import { ComponentExt } from "../lib/utils/componentExt.js";
+import { LangSelect } from "../lib/utils/langSelect.js";
+import { Utils } from "../lib/utils/utils.js";
+import { EditForm } from "../lib/editForm.js";
 import { LoginBL } from "./forms/login.js";
-import ChromeTabs from "../js/chrometab.js";
+import ChromeTabs from "../lib/chrometab.js";
 export class App {
     static DefaultFeature = Utils.HeadChildren.layout?.content || "index";
     static FeatureLoaded = false;

@@ -1,10 +1,10 @@
-import { Client } from "../../js/clients/client.js";
-import EditableComponent from "../../js/editableComponent.js";
-import { Feature } from "../../js/models/feature.js";
-import { Html } from "../../js/utils/html.js";
-import EventType from "../../js/models/eventType.js";
-import { ComponentExt } from "../../js/utils/componentExt.js";
-import { TabEditor } from "../../js/tabEditor.js";
+import { Client } from "../../lib/clients/client.js";
+import EditableComponent from "../../lib/editableComponent.js";
+import { Feature } from "../../lib/models/feature.js";
+import { Html } from "../../lib/utils/html.js";
+import EventType from "../../lib/models/eventType.js";
+import { ComponentExt } from "../../lib/utils/componentExt.js";
+import { TabEditor } from "../../lib/tabEditor.js";
 
 export class MenuComponent extends EditableComponent {
     /**

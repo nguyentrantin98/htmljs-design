@@ -1,20 +1,21 @@
 {
   "name": "htmljs-code",
-  "version": "4.0.9",
+  "version": "6.0.1",
   "description": "",
-  "main": "dist/htmljs-code.umd.js",
-  "module": "dist/htmljs-code.es.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/nguyentrantin98/htmljs-design.git"
   },
   "files": [
-    "dist",
+    "lib",
     "README.md"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite",
     "serve": "vite preview"
   },
   "keywords": [],

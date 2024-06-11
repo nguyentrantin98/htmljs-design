@@ -1,15 +1,15 @@
-import { Client } from "../../js/clients/client.js";
-import EditableComponent from "../../js/editableComponent.js";
-import { Toast } from "../../js/toast.js";
-import { Utils } from "../../js/utils/utils.js";
-import { TaskStateEnum } from "../../js/models/enum.js"
-import { Html } from "../../js/utils/html.js";
-import { ElementType } from "../../js/models/elementType.js";
-import EventType from "../../js/models/eventType.js";
-import { Spinner } from "../../js/spinner.js";
-import { SqlViewModel } from "../../js/models/sqlViewModel.js";
-import { TaskNotification } from "../../js/models/task.js";
-import { ComponentExt } from "../../js/utils/componentExt.js";
+import { Client } from "../../lib/clients/client.js";
+import EditableComponent from "../../lib/editableComponent.js";
+import { Toast } from "../../lib/toast.js";
+import { Utils } from "../../lib/utils/utils.js";
+import { TaskStateEnum } from "../../lib/models/enum.js"
+import { Html } from "../../lib/utils/html.js";
+import { ElementType } from "../../lib/models/elementType.js";
+import EventType from "../../lib/models/eventType.js";
+import { Spinner } from "../../lib/spinner.js";
+import { SqlViewModel } from "../../lib/models/sqlViewModel.js";
+import { TaskNotification } from "../../lib/models/task.js";
+import { ComponentExt } from "../../lib/utils/componentExt.js";
 
 export class NotificationBL extends EditableComponent {
     static NoMoreTask = "No more task";
