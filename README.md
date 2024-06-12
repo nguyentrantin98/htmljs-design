@@ -6,16 +6,44 @@ HTMJS library FE
 
 Use the package manager [npm](https://www.npmjs.com/package/htmljs-code) to install foobar.
 
-```bash
-npm i htmljs-code --save
-```
-
 ## Usage
 
 ```bash
-npm i htmljs-code react --save
+npm i vite htmljs-code react --save
 ```
 
+```json
+"scripts": {
+    "dev": "vite"
+  },
+```
+
+```bash
+npm run dev
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="api" content="https://htmljs-design.softek.com.vn">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTMLJS</title>
+    <script type="module" src="/index.jsx"></script>
+</head>
+<body>
+    <div id="app">
+
+    </div>
+</body>
+</html>
+```
+
+```file
+index.jsx
+```
 ```javascript
 import "htmljs-code/lib/css/fontawesome.min.css";
 import "htmljs-code/lib/css/datepicker.css";
@@ -33,6 +61,7 @@ export class App {
   static Main() {
     var app = new Page();
     app.EditForm = new EditForm("home");
+    app.ParentElement = document.getElementById("app");
     app.EditForm.Policies = [
       {
         CanRead: true,
