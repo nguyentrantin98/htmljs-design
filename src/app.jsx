@@ -7,8 +7,7 @@ import "/lib/css/gridview.css";
 import "/lib/css/main.css";
 import "/lib/css/dropdown.css";
 
-import { EditForm, Textbox } from "../lib";
-import { Page } from "../lib";
+import { Page, EditForm, ButtonPdf } from "../lib";
 import React from "react";
 
 export class App {
@@ -34,9 +33,10 @@ export class App {
     app.Meta.Components = [
       {
         ComponentType: (...args) => {
-          new Textbox(...args);
+          return new ButtonPdf(...args);
         },
         FieldName: "Test",
+        Label: 'Pdf',
         Id: "1",
       },
       {
