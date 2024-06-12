@@ -97,7 +97,7 @@ export class MenuComponent extends EditableComponent {
                             Html.Instance.ClassName("active");
                         }
                     }
-                    Html.Instance.Event(EventType.Click, (e) => this.MenuItemClick(e, item.Name).bind(this))
+                    Html.Instance.Event(EventType.Click, (e) => this.MenuItemClick(e, item.Name))
                         .Icon(item.Icon).ClassName("nav-icon").End.Div.IText(item.Label).End.Render();
                     if (check) {
                         Html.Instance.I.ClassName("right fas fa-angle-left").End.Render();

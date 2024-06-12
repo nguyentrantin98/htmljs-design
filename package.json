@@ -29,9 +29,8 @@
     "jscheck": "^0.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "reconnecting-websocket": "^4.4.0"
-  },
-  "devDependencies": {
-    "vite": "^5.2.13"
+    "reconnecting-websocket": "^4.4.0",
+    "vite": "^5.2.13",
+    "vite-plugin-compression2": "^1.1.1"
   }
 }

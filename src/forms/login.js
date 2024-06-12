@@ -60,7 +60,7 @@ export class LoginBL extends PopupEditor {
     RenderLoginForm() {
         window.clearTimeout(this._renderAwaiter);
         this._renderAwaiter = window.setTimeout(() => {
-            Html.Take("#tab-content").Div.ClassName("modal is-open").Event(EventType.KeyPress, e => this.KeyCodeEnter(e));
+            Html.Take(document.body).Div.ClassName("modal is-open").Event(EventType.KeyPress, e => this.KeyCodeEnter(e));
             this._backdrop = Html.Context;
             Html.Instance.Div.ClassName("modal-container")
                 .Div.ClassName("modal-left")

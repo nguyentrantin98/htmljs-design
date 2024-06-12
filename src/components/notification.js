@@ -2,13 +2,9 @@ import { Client } from "../../lib/clients/client.js";
 import { EditableComponent } from "../../lib/editableComponent.js";
 import { Toast } from "../../lib/toast.js";
 import { Utils } from "../../lib/utils/utils.js";
-import { TaskStateEnum } from "../../lib/models/enum.js"
+import { SqlViewModel, EventType, TaskStateEnum } from "../../lib/models/"
 import { Html } from "../../lib/utils/html.js";
-import { ElementType } from "../../lib/models/elementType.js";
-import EventType from "../../lib/models/eventType.js";
 import { Spinner } from "../../lib/spinner.js";
-import { SqlViewModel } from "../../lib/models/sqlViewModel.js";
-import { TaskNotification } from "../../lib/models/task.js";
 import { ComponentExt } from "../../lib/utils/componentExt.js";
 
 export class NotificationBL extends EditableComponent {
@@ -16,7 +12,7 @@ export class NotificationBL extends EditableComponent {
     static _instance = null;
     static _countNtf = null;
     static _countUser = null;
-    /** @type {TaskNotification[]} */
+    /** @type {any[]} */
     static Notifications = [];
     static UserActive = [];
     static NotiRoot = document.getElementById("notification-list");
