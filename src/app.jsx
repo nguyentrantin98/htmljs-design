@@ -8,25 +8,65 @@ import "/lib/css/main.css";
 import "/lib/css/dropdown.css";
 
 import { Page, EditForm, ButtonPdf } from "../lib";
+import { MenuComponent } from "./components/menu";
 import React from "react";
 
 export class App {
-  static Main() {
+  static async Main() {
     var app = new Page();
-    app.EditForm = new EditForm("home");
+    app.EditForm = new EditForm("DONGA");
     app.EditForm.Policies = [
       {
         CanRead: true,
       },
     ];
-    app.Meta.ParentElement = document.getElementById('app');
+    app.Meta.ParentElement = document.getElementById("app");
     app.Meta.Layout = () => (
       <>
         <div className="wrapper">
-          <div className="box-shadow" data-name="Test"></div>
-          <div className="box-shadow datetime-picker" data-name="Test1"></div>
-          <div className="box-shadow" data-name="Test3"></div>
-          <div className="box-shadow" data-name="Test4"></div>
+          <nav className="main-header navbar navbar-expand navbar-light">
+            <div className="chrome-tabs">
+              <div className="chrome-tabs-content"></div>
+              <div className="chrome-tabs-bottom-bar"></div>
+            </div>
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item dropdown" id="lang-active"></li>
+              <li className="nav-item dropdown" id="user-active"></li>
+              <li className="nav-item dropdown" id="notification-list"></li>
+              <li
+                className="nav-item dropdown profile-info1"
+                id="profile-info1"
+              ></li>
+              <li className="nav-item feature-task"></li>
+            </ul>
+          </nav>
+          <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
+            <a href="/" className="brand-link">
+              <img
+                src="/image/softek.png"
+                alt="F.A.S.T PRO"
+                className="brand-image"
+              />
+              <span className="brand-text font-weight-light">F.A.S.T PRO</span>
+            </a>
+            <div className="sidebar">
+              <div className="form-inline">
+                <div className="input-group">
+                  <input
+                    className="form-control form-control-sidebar"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search"
+                  />
+                </div>
+              </div>
+              <nav className="mt-2" data-name="Menu" id="menu"></nav>
+            </div>
+          </aside>
+          <div
+            className="content-wrapper"
+            id="tab-content"></div>
+          <aside className="control-sidebar control-sidebar-light"></aside>
         </div>
       </>
     );
@@ -36,7 +76,15 @@ export class App {
           return new ButtonPdf(...args);
         },
         FieldName: "Test",
-        Label: 'Pdf',
+        Label: "Pdf",
+        Id: "1",
+      },
+      {
+        ComponentType: (...args) => {
+          return new MenuComponent(...args);
+        },
+        FieldName: "Menu",
+        Label: "Pdf",
         Id: "1",
       },
       {
@@ -76,7 +124,7 @@ export class App {
         ],
       },
     ];
-    app.Render();
+    await app.Render();
   }
 }
-App.Main();
+await App.Main();

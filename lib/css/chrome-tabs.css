@@ -8,6 +8,7 @@
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     width: 100%;
+    --tab-content-margin: 9px
 }
 
 .chrome-tabs * {
