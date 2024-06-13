@@ -9,12 +9,46 @@ import { ElementType } from "../../lib/models/elementType.js";
 
 export class MenuComponent extends EditableComponent {
     /**
+     * @type {HTMLElement}
+     */
+    _elementMain;
+    /**
+     * @type {HTMLElement}
+     */
+    _elementMenu;
+    /**
+     * @type {HTMLElement}
+     */
+    _elementBrandLink;
+    /**
+     * @type {HTMLElement}
+     */
+    _elementMainHeader;
+    /**
+     * @type {HTMLElement}
+     */
+    _elementMainSidebar;
+    /**
+     * @type {HTMLElement}
+     */
+    _elementExpand;
+    /**
      * Creates an instance of the MenuComponent.
      * @param {Component} meta - The UI component.
      * @param {HTMLElement} ele - The HTML element.
      */
     constructor(meta, ele) {
         super(meta, ele);
+        this._elementMain = document.querySelector("#tab-content");
+        this._elementMenu = document.querySelector("aside");
+        this._elementBrandLink = document.querySelector(".brand-link");
+        this._elementMainHeader = document.querySelector(".main-header");
+        this._elementMainSidebar = document.querySelector(".main-sidebar");
+        var widthMenu = window.localStorage.getItem("menu-width") ?? "202px";
+        this._elementMain.style.marginLeft = widthMenu;
+        this._elementBrandLink.style.width = widthMenu;
+        this._elementMainHeader.style.marginLeft = widthMenu;
+        this._elementMainSidebar.style.width = widthMenu;
     }
 
     Render() {

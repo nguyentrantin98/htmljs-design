@@ -1,15 +1,9 @@
-import "/lib/css/fontawesome.min.css";
-import "/lib/css/datepicker.css";
-import "/lib/css/number.css";
-import "/lib/css/input.css";
-import "/lib/css/section.css";
-import "/lib/css/gridview.css";
-import "/lib/css/main.css";
-import "/lib/css/dropdown.css";
-
 import { Page, EditForm, ButtonPdf } from "../lib";
 import { MenuComponent } from "./components/menu";
 import React from "react";
+import { Profile } from "./components/profile";
+import { Lang } from "./components/lang";
+import { UserActive } from "./components/userActive";
 
 export class App {
   static async Main() {
@@ -30,27 +24,23 @@ export class App {
               <div className="chrome-tabs-bottom-bar"></div>
             </div>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item dropdown" id="lang-active"></li>
-              <li className="nav-item dropdown" id="user-active"></li>
+              <li className="nav-item dropdown" id="lang-active" data-name="Lang"></li>
+              <li className="nav-item dropdown" id="user-active" data-name="UserActive"></li>
               <li className="nav-item dropdown" id="notification-list"></li>
-              <li
-                className="nav-item dropdown profile-info1"
-                id="profile-info1"
-              ></li>
-              <li className="nav-item feature-task"></li>
+              <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile"></li>
             </ul>
           </nav>
           <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
             <a href="/" className="brand-link">
               <img
-                src="/image/softek.png"
+                src="https://fastweb.softek.com.vn/image/softek.png"
                 alt="F.A.S.T PRO"
                 className="brand-image"
               />
               <span className="brand-text font-weight-light">F.A.S.T PRO</span>
             </a>
             <div className="sidebar">
-              <div className="form-inline">
+              <div className="form-inline" style={{ marginTop: "6px" }}>
                 <div className="input-group">
                   <input
                     className="form-control form-control-sidebar"
@@ -72,30 +62,28 @@ export class App {
     );
     app.Meta.Components = [
       {
-        ComponentType: (...args) => {
-          return new ButtonPdf(...args);
+        ComponentType: () => {
+          return new Profile();
         },
-        FieldName: "Test",
-        Label: "Pdf",
-        Id: "1",
+        FieldName: "Profile",
       },
       {
-        ComponentType: (...args) => {
-          return new MenuComponent(...args);
+        ComponentType: () => {
+          return new MenuComponent();
         },
         FieldName: "Menu",
-        Label: "Pdf",
-        Id: "1",
       },
       {
-        ComponentType: "Datepicker",
-        FieldName: "Test1",
-        Id: "1",
+        ComponentType: () => {
+          return new Lang();
+        },
+        FieldName: "Lang",
       },
       {
-        ComponentType: "Number",
-        FieldName: "Test3",
-        Id: "1",
+        ComponentType: () => {
+          return new UserActive();
+        },
+        FieldName: "UserActive",
       },
       {
         ComponentType: "Dropdown",
