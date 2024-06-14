@@ -128,4 +128,4 @@ export class App {
     }
   }
 }
-await App.Main();
+App.Main();
