@@ -7,6 +7,10 @@ import { UserActive } from "./components/userActive";
 import ChromeTabs from "../lib/chrometab";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from "./Home";
+import { LoginBL } from "./forms/login";
+import { ComponentExt } from "../lib/utils/componentExt";
+import { Client } from "../lib/clients";
+import { Utils } from "../lib/utils/utils";
 
 export class App {
   static async Main() {
@@ -126,6 +130,31 @@ export class App {
     if (el != null) {
       ChromeTabs.init(el);
     }
+    LoginBL.Instance.Render();
+    App.LoadByFromUrl();
+  }
+
+  static LoadByFromUrl() {
+    const fName = App.GetFeatureNameFromUrl() || "";
+    if (!fName) {
+      return;
+    }
+    ComponentExt.InitFeatureByName(fName, true).Done();
+    return fName;
+  }
+
+  /**
+  * @returns {string|null}
+  */
+  static GetFeatureNameFromUrl() {
+    let feature = window.location.pathname.toLowerCase().replace(Client.BaseUri.toLowerCase(), "");
+    if (feature.startsWith(Utils.Slash)) {
+      feature = feature.substring(1);
+    }
+    if (!feature.trim() || feature == undefined) {
+      return null;
+    }
+    return feature;
   }
 }
 App.Main();
