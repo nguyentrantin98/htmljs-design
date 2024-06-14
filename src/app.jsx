@@ -4,6 +4,9 @@ import React from "react";
 import { Profile } from "./components/profile";
 import { Lang } from "./components/lang";
 import { UserActive } from "./components/userActive";
+import ChromeTabs from "../lib/chrometab";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from "./Home";
 
 export class App {
   static async Main() {
@@ -17,47 +20,53 @@ export class App {
     app.Meta.ParentElement = document.getElementById("app");
     app.Meta.Layout = () => (
       <>
-        <div className="wrapper">
-          <nav className="main-header navbar navbar-expand navbar-light">
-            <div className="chrome-tabs">
-              <div className="chrome-tabs-content"></div>
-              <div className="chrome-tabs-bottom-bar"></div>
-            </div>
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item dropdown" id="lang-active" data-name="Lang"></li>
-              <li className="nav-item dropdown" id="user-active" data-name="UserActive"></li>
-              <li className="nav-item dropdown" id="notification-list"></li>
-              <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile"></li>
-            </ul>
-          </nav>
-          <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
-            <a href="/" className="brand-link">
-              <img
-                src="https://fastweb.softek.com.vn/image/softek.png"
-                alt="F.A.S.T PRO"
-                className="brand-image"
-              />
-              <span className="brand-text font-weight-light">F.A.S.T PRO</span>
-            </a>
-            <div className="sidebar">
-              <div className="form-inline" style={{ marginTop: "6px" }}>
-                <div className="input-group">
-                  <input
-                    className="form-control form-control-sidebar"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </div>
+        <Router>
+          <div className="wrapper">
+            <nav className="main-header navbar navbar-expand navbar-light">
+              <div className="chrome-tabs">
+                <div className="chrome-tabs-content"></div>
+                <div className="chrome-tabs-bottom-bar"></div>
               </div>
-              <nav className="mt-2" data-name="Menu" id="menu"></nav>
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item dropdown" id="lang-active" data-name="Lang"></li>
+                <li className="nav-item dropdown" id="user-active" data-name="UserActive"></li>
+                <li className="nav-item dropdown" id="notification-list"></li>
+                <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile"></li>
+              </ul>
+            </nav>
+            <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
+              <a href="/" className="brand-link">
+                <img
+                  src="https://fastweb.softek.com.vn/image/softek.png"
+                  alt="F.A.S.T PRO"
+                  className="brand-image"
+                />
+                <span className="brand-text font-weight-light">F.A.S.T PRO</span>
+              </a>
+              <div className="sidebar">
+                <div className="form-inline" style={{ marginTop: "6px" }}>
+                  <div className="input-group">
+                    <input
+                      className="form-control form-control-sidebar"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                  </div>
+                </div>
+                <nav className="mt-2" data-name="Menu" id="menu"></nav>
+              </div>
+            </aside>
+            <div
+              className="content-wrapper"
+              id="tab-content">
+              <Routes>
+                <Route path="/:slug" element={<Home />} />
+              </Routes>
             </div>
-          </aside>
-          <div
-            className="content-wrapper"
-            id="tab-content"></div>
-          <aside className="control-sidebar control-sidebar-light"></aside>
-        </div>
+            <aside className="control-sidebar control-sidebar-light"></aside>
+          </div>
+        </Router>
       </>
     );
     app.Meta.Components = [
@@ -113,6 +122,10 @@ export class App {
       },
     ];
     await app.Render();
+    var el = document.querySelector('.chrome-tabs')
+    if (el != null) {
+      ChromeTabs.init(el);
+    }
   }
 }
 await App.Main();

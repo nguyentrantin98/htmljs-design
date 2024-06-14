@@ -152,6 +152,32 @@ export class MenuComponent extends EditableComponent {
      * @param {string} featureName
      */
     MenuItemClick(e, featureName) {
+        /**
+         * @type {HTMLElement}
+         */
+        var a = e.target;
+        if (!(a instanceof HTMLAnchorElement)) {
+            a = a.closest("a");
+        }
+        var li = a.closest(ElementType.li);
+        if (li.classList.contains("menu-open")) {
+            li.classList.remove("menu-open");
+            return;
+        }
+        this.HideAll(a.closest("ul"));
+        a.focus();
+        if (a.classList.contains("active")) {
+            a.classList.remove("active");
+        }
+        else {
+            a.classList.add("active");
+        }
+        if (li.classList.contains("menu-open")) {
+            li.classList.remove("menu-open");
+        }
+        else {
+            li.classList.add("menu-open");
+        }
         e.preventDefault();
         var tab = TabEditor.Tabs.find(x => x.Meta.Name == featureName);
         if (tab) {
@@ -159,5 +185,18 @@ export class MenuComponent extends EditableComponent {
             return;
         }
         ComponentExt.InitFeatureByName(featureName, true).Done();
+    }
+
+    /**
+     * @param {HTMLElement} current
+     */
+    HideAll(current) {
+        if (!current) {
+            current = document.body;
+        }
+        var activea = current.querySelectorAll("a.active");
+        var activeLi = current.querySelectorAll("li.menu-open");
+        activea.forEach(x => x.classList.remove("active"));
+        activeLi.forEach(x => x.classList.remove("menu-open"));
     }
 }

@@ -12,6 +12,12 @@ body {
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+a {
+  color: hsla(0, 0%, 0%, .65);
+  text-decoration: none;
+  background-color: transparent;
+}
+
 div {
   outline: 0;
 }
@@ -446,4 +452,12 @@ button.btn {
 .confirm-dialog {
   height: auto;
   width: auto;
+}
+
+#menu .nav-link {
+  cursor: pointer;
+  height: 19px;
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
 }
