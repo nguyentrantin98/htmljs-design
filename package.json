@@ -16,6 +16,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite",
+    "build1": "vite build",
     "serve": "vite preview"
   },
   "keywords": [],
