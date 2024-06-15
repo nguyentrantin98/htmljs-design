@@ -122,6 +122,7 @@ input {
   width: 90%;
   padding: 20px;
   height: calc(100vh - 7rem);
+  position: relative;
 }
 
 .popup-title {
@@ -462,4 +463,11 @@ button.btn {
   padding-top: 10px;
   width: 100%;
   display: flex;
+}
+
+.popup-footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
 }
