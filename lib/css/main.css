@@ -95,7 +95,7 @@ input {
 }
 
 .backdrop {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -121,7 +121,7 @@ input {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 90%;
   padding: 20px;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 7rem);
 }
 
 .popup-title {
