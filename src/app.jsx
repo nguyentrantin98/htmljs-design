@@ -9,6 +9,8 @@ import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
 import { Utils } from "../lib/utils/utils";
 import ChromeTabs from "../lib/chrometab.js";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export class App {
   /** @type {Page} */
@@ -71,6 +73,7 @@ export class App {
           </div>
           <aside className="control-sidebar control-sidebar-light"></aside>
         </div>
+        <ToastContainer />
       </>
     );
     this.Meta.Components = [
