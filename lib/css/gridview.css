@@ -793,5 +793,5 @@ li {
 
 
 .grid-wrapper thead tr:first-child th {
-    background: #aae1e6;
+    background: var(--bg-nav);
 }

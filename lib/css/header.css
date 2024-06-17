@@ -432,7 +432,7 @@
     top: 0;
     z-index: 1033;
     height: 39px;
-    background-image: linear-gradient(to right, rgba(64, 31, 140, 0), #1e6952);
+    background-image: linear-gradient(to right, rgba(64, 31, 140, 0), var(--bg-nav));
 }
 
 .layout-navbar-fixed.layout-fixed .wrapper .control-sidebar {

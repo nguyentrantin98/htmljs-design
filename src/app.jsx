@@ -1,26 +1,33 @@
-import { Page, EditForm, ButtonPdf } from "../lib";
+import { Page, EditForm, ButtonPdf, Feature } from "../lib";
 import { MenuComponent } from "./components/menu";
 import React from "react";
 import { Profile } from "./components/profile";
 import { Lang } from "./components/lang";
 import { UserActive } from "./components/userActive";
-import ChromeTabs from "../lib/chrometab";
-import { LoginBL } from "./forms/login";
+import { LoginBL } from "./forms/login.jsx";
 import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
 import { Utils } from "../lib/utils/utils";
+import ChromeTabs from "../lib/chrometab.js";
 
 export class App {
-  static async init() {
-    var app = new Page();
-    app.EditForm = new EditForm("DONGA");
-    app.EditForm.Policies = [
-      {
-        CanRead: true,
-      },
-    ];
-    app.Meta.ParentElement = document.getElementById("app");
-    app.Meta.Layout = () => (
+  /** @type {Page} */
+  static MyApp;
+  /** @type {App} */
+  static _instance;
+  /** @type {App} */
+  static get Instance() {
+    if (!this._instance) {
+      this._instance = new App();
+    }
+    return this._instance;
+  }
+  /** @type {Feature} */
+  Meta;
+  constructor() {
+    this.Meta = new Feature;
+    this.Meta.ParentElement = document.getElementById("app");
+    this.Meta.Layout = () => (
       <>
         <div className="wrapper">
           <nav className="main-header navbar navbar-expand navbar-light">
@@ -55,7 +62,7 @@ export class App {
                   />
                 </div>
               </div>
-              <nav className="mt-2" data-name="Menu" id="menu"></nav>
+              <nav className="mt-2" id="menu" data-name="Menu"></nav>
             </div>
           </aside>
           <div
@@ -66,7 +73,7 @@ export class App {
         </div>
       </>
     );
-    app.Meta.Components = [
+    this.Meta.Components = [
       {
         ComponentType: () => {
           return new Profile();
@@ -92,17 +99,32 @@ export class App {
         FieldName: "UserActive",
       }
     ];
-    await app.Render();
+    this.MyApp = new Page();
+    this.MyApp.EditForm = new EditForm("MyApp");
+    this.MyApp.EditForm.Policies = [
+      {
+        CanRead: true,
+      },
+    ];
+    this.MyApp.Meta = this.Meta;
+    this.MyApp.EditForm.Meta = this.Meta;
+  }
+
+  Init() {
+    LoginBL.Instance.Render();
+  }
+
+  async RenderLayout() {
+    await this.MyApp.Render();
     var el = document.querySelector('.chrome-tabs')
     if (el != null) {
       ChromeTabs.init(el);
     }
-    LoginBL.Instance.Render();
-    App.LoadByFromUrl();
+    this.LoadByFromUrl();
   }
 
-  static LoadByFromUrl() {
-    const fName = App.GetFeatureNameFromUrl() || "";
+  LoadByFromUrl() {
+    const fName = this.GetFeatureNameFromUrl() || "";
     if (!fName) {
       return;
     }
@@ -113,7 +135,7 @@ export class App {
   /**
   * @returns {string|null}
   */
-  static GetFeatureNameFromUrl() {
+  GetFeatureNameFromUrl() {
     let feature = window.location.pathname.toLowerCase().replace(Client.BaseUri.toLowerCase(), "");
     if (feature.startsWith(Utils.Slash)) {
       feature = feature.substring(1);
@@ -124,4 +146,4 @@ export class App {
     return feature;
   }
 }
-App.init();
+App.Instance.Init()

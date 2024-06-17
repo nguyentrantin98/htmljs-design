@@ -1,0 +1,379 @@
+@media (max-width:576px) {
+    .wrap-login {
+        padding: 55px 15px 37px 15px;
+    }
+}
+
+.register-block {
+    display: inline-flex;
+    width: 100%;
+    margin-top: 32px;
+    justify-content: center;
+}
+
+.register-btn {
+    font-size: 14px;
+    color: #0073e6;
+    line-height: 17px;
+    margin-left: 8px;
+    display: block;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+}
+
+.forgot-password {
+    font-size: 14px;
+    color: #0073e6;
+    line-height: 17px;
+    margin-top: 0;
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    margin-bottom: 24px;
+}
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container-login {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/bg1.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.container-login[bg='7'] {
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/bg7.jpg);
+}
+
+.container-login::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: linear-gradient(rgba(0, 30, 61, .6) 0, rgba(0, 0, 0, .1) 41.42%, rgba(0, 0, 0, .3) 100%);
+}
+
+.wrap-login {
+    width: 400px;
+    border-radius: 8px;
+    padding: 40px 48px 40px 48px;
+    min-height: 340px;
+    background: #fff;
+    position: relative;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, .12);
+}
+
+.copy-right-text {
+    padding-top: 14px;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    bottom: -28px;
+    color: rgba(255, 255, 255, .6);
+}
+
+.wrap-input {
+    width: 100%;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.wrap-input.pass-wrap {
+    margin-bottom: 16px;
+}
+
+.input {
+    font-size: 16px;
+    color: #212121;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    height: 48px !important;
+    border: 1px solid #e0e5e9;
+    background: 0 0;
+    padding: 14px 16px 15px 16px;
+    border-radius: 3px;
+}
+
+.login-form-subtitle {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    margin-top: -24px;
+    display: block;
+    margin-bottom: 24px;
+}
+
+span.error-info {
+    font-size: 12px;
+    color: #ff1d1d;
+    height: 20px;
+    line-height: 20px;
+    display: none;
+}
+
+.btn-show-pass {
+    display: block;
+    position: absolute;
+    right: 8px;
+    top: 16px;
+    width: 16px;
+    height: 16px;
+    background: url(https://amisplatform.misacdn.net/apps/login/img/icon-hide-pass.svg) center no-repeat;
+}
+
+.tenants-loading {
+    width: 100%;
+    height: 300px;
+    background-color: #fff;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    padding: 16px;
+}
+
+.tenants-loading-title {
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    color: #666;
+}
+
+.tenants-loading-name {
+    font-size: 20px;
+    color: #2196f3;
+    width: 100%;
+    text-align: center;
+    margin-top: 16px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.wrap-login[type=login] .login-form-sso-callback {
+    display: none;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-form-logo {
+    font-size: 60px;
+    background: url(https://amisplatform.misacdn.net/apps/login/img/icon-amis-platform2.svg?v=20200512) center no-repeat;
+    background-size: contain;
+    display: block;
+    display: -moz-box;
+    display: -ms-flexbox;
+    width: 196px;
+    height: 36px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.login-form-title {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 29px;
+    margin-top: 12px;
+    text-align: center;
+    display: block;
+    margin-bottom: 32px;
+}
+
+.login-form-btn {
+    position: relative;
+    width: 100%;
+    font-size: 16px;
+    color: #fff;
+    line-height: 40px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+    border: 0;
+    border-radius: 3px;
+    background: #0073e6;
+    transition: all .4s;
+    -o-transition: all .4s;
+    -moz-transition: all .4s;
+    display: block;
+    text-decoration: none;
+}
+
+.login-form-btn:hover {
+    background-color: #384fd5;
+    box-shadow: 0 2px 15px rgba(42, 126, 252, .25);
+    transition: all .5s;
+}
+
+.text-login-fail {
+    min-height: 24px;
+    line-height: 14px;
+    display: none;
+    color: #ff1d1d;
+    padding: 0;
+}
+
+.captcha-box {
+    display: flex;
+}
+
+.captcha-box input {
+    width: 142px;
+}
+
+.captcha-box img {
+    width: 130px;
+    height: 48px;
+    margin-left: 8px;
+}
+
+.captcha-box .btn-captcha-reload {
+    width: 32px;
+    height: 48px;
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/icon-reload.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.login-form-sso-callback {
+    text-align: center;
+}
+
+.login-form-sso-callback .sso-icon {
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40px;
+    margin: 0 auto;
+    margin-bottom: 16px;
+}
+
+.login-form-sso-callback .sso-message {
+    margin-bottom: 32px;
+    padding: 8px;
+    line-height: 21px;
+}
+
+.login-form-sso-callback[state=loading] .sso-icon {
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/loading-blue.gif);
+}
+
+.login-form-sso-callback .sso-buttons {
+    width: 100%;
+    display: inline-flex;
+}
+
+.login-form-sso-callback .sso-button {
+    display: block;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 3px;
+    line-height: 40px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    height: 40px;
+    flex: 1;
+}
+
+.login-form-sso-callback .sso-button:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .16);
+}
+
+.login-form-sso-callback .sso-button-relogin {
+    color: #fff;
+    background: #0073e6;
+}
+
+.login-form-sso-callback .sso-button-register {
+    color: #0073e6;
+    border: 1px solid #0073e6;
+    background: #fff;
+}
+
+.sso-method-block {
+    text-align: center;
+    margin: 24px 0 0 0;
+}
+
+.sso-title {
+    display: inline-flex;
+    align-items: center;
+    justify-items: center;
+    height: 28px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.sso-title-line {
+    height: 1px;
+    flex: 1;
+    background-color: #9ea1a5;
+}
+
+.sso-title-text {
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #9ea1a5;
+    font-size: 14px;
+}
+
+.sso-method-list {
+    display: inline-flex;
+}
+
+.sso-method-item {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    margin: 0 4px;
+    cursor: pointer;
+    background-position: center;
+    background-size: 40px;
+    background-repeat: no-repeat;
+}
+
+.sso-method-item[method=Google] {
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/icon-google.svg);
+}
+
+.sso-method-item[method=Apple] {
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/icon-apple.svg);
+}
+
+.sso-method-item[method=Microsoft] {
+    background-image: url(https://amisplatform.misacdn.net/apps/login/img/icon-microsoft.svg);
+}
+
+.sso-method-item:hover {
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .16);
+}

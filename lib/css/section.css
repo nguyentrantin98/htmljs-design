@@ -50,6 +50,5 @@
 
 .box-shadow {
     box-shadow: 0 1.5px 2px #272a431c, 0 0 1px .25px #272a432e;
-    grid-gap: 1rem;
     margin: .8rem;
 }
