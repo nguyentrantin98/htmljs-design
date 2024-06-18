@@ -1,9 +1,8 @@
 import { Page, EditForm, ButtonPdf, Feature } from "../lib";
 import { MenuComponent } from "./components/menu";
 import React from "react";
-import { Profile } from "./components/profile.jsx";
-import { Lang } from "./components/lang.jsx";
-import { UserActive } from "./components/userActive.jsx";
+import Lang from "./components/lang.jsx";
+import UserActive from "./components/userActive.jsx";
 import { LoginBL } from "./forms/login.jsx";
 import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
@@ -11,6 +10,8 @@ import { Utils } from "../lib/utils/utils";
 import ChromeTabs from "../lib/chrometab.js";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from "./components/profile.jsx";
+
 
 export class App {
   /** @type {Page} */
@@ -35,15 +36,14 @@ export class App {
           <nav className="main-header navbar navbar-expand navbar-light">
             <div className="chrome-tabs">
               <div className="chrome-tabs-content"></div>
-              <div className="chrome-tabs-bottom-bar"></div>
             </div>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item dropdown" id="lang-active" data-name="Lang"></li>
-              <li className="nav-item dropdown" id="user-active" data-name="UserActive"></li>
-              <li className="nav-item dropdown" id="notification-list"></li>
-              <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile">
+              <li className="nav-item dropdown"></li>
+              <li className="nav-item dropdown"></li>
+              <li className="nav-item dropdown"><Profile />
               </li>
             </ul>
+            <div className="chrome-tabs-bottom-bar"></div>
           </nav>
           <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
             <a href="/" className="brand-link">
@@ -80,27 +80,9 @@ export class App {
     this.Meta.Components = [
       {
         ComponentType: () => {
-          return new Profile();
-        },
-        FieldName: "Profile",
-      },
-      {
-        ComponentType: () => {
           return new MenuComponent();
         },
         FieldName: "Menu",
-      },
-      {
-        ComponentType: () => {
-          return new Lang();
-        },
-        FieldName: "Lang",
-      },
-      {
-        ComponentType: () => {
-          return new UserActive();
-        },
-        FieldName: "UserActive",
       }
     ];
     this.MyApp = new Page();

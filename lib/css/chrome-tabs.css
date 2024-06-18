@@ -137,6 +137,7 @@
     border-top-right-radius: 8px;
     overflow: hidden;
     pointer-events: all;
+    background-color: var(--bg-color);
 }
 
 .chrome-tabs .chrome-tab[is-mini] .chrome-tab-content {
@@ -283,10 +284,10 @@
     transition: transform 120ms ease-in-out;
 }
 
-.chrome-tabs .chrome-tabs-bottom-bar {
+.chrome-tabs-bottom-bar {
     position: absolute;
     bottom: 0;
-    height: 0;
+    height: 5px;
     left: 0;
     width: 100%;
     background: var(--bg-color);

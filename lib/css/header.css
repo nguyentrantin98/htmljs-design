@@ -413,7 +413,7 @@
 }
 
 .layout-navbar-fixed .wrapper .content-wrapper {
-    margin-top: 42px;
+    margin-top: 44px;
 }
 
 .layout-navbar-fixed .wrapper .main-header {
@@ -422,7 +422,7 @@
     right: 0;
     top: 0;
     z-index: 1033;
-    height: 39px;
+    height: 44px;
     background-image: linear-gradient(to right, rgba(64, 31, 140, 0), var(--bg-nav));
 }
 
@@ -431,7 +431,7 @@
 }
 
 .layout-navbar-fixed.layout-fixed .wrapper .sidebar {
-    margin-top: 36px;
+    margin-top: 44px;
 }
 
 .layout-navbar-fixed .wrapper .control-sidebar {
@@ -443,7 +443,7 @@
     position: fixed;
     top: 0;
     z-index: 1035;
-    height: 34px;
+    height: 44px;
     padding: 2px;
 }
 
@@ -547,6 +547,7 @@
 .main-header .navbar-nav .nav-item {
     margin: 0;
     margin-right: 16px;
+    height: 44px;
 }
 
 .brand-link {
@@ -1307,6 +1308,7 @@
 .navbar-nav {
     display: flex;
     list-style-type: none;
+    margin-right: 1rem !important;
     margin: 0;
     padding: 0;
   }

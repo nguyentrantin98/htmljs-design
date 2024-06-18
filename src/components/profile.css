@@ -1,0 +1,657 @@
+.action {
+    top: 20px;
+    right: 30px;
+}
+
+.action .profile {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.action .profile img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.action .menu {
+    position: absolute;
+    right: -10px;
+    background: #fff;
+    margin-top: 6px;
+    border-radius: 15px;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+    width: 312px;
+    z-index: 1000;
+    box-shadow: 0 2px 6px 2px rgba(0, 0, 0, .15);
+}
+
+.action .menu.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.action .menu::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    right: 28px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+}
+
+.action .menu h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 0;
+    font-weight: 500;
+    color: #555;
+    line-height: 1.5em;
+}
+
+.action .menu h3 span {
+    font-size: 14px;
+    color: #cecece;
+    font-weight: 300;
+}
+
+.action .menu ul li {
+    list-style: none;
+    padding: 16px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+}
+
+.action .menu ul li img {
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover img {
+    opacity: 1;
+}
+
+.action .menu ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+
+.action .menu ul li:hover a {
+    color: #ff5d94;
+}
+
+.con-ms-dropdown--menu[data-v-50946eb4] {
+    padding-top: 10px;
+    position: absolute;
+    height: auto;
+    width: auto;
+    z-index: 9990;
+    transform: translate(-100%);
+    transition: opacity .25s, transform .25s, width .3s ease;
+}
+
+.con-ms-dropdown--menu[data-v-50946eb4]:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    left: 0;
+    top: 100%;
+}
+
+.ms-dropdown--menu[data-v-50946eb4] {
+    background: #fff;
+    padding: 2px 1px;
+    border-radius: 2px;
+    border: 1px solid #babec5;
+    position: relative;
+}
+
+.con-ms-tooltip .tooltip-content[data-v-7f99ee26] {
+    height: 100%;
+}
+
+.ms-tooltip[data-v-7f99ee26] {
+    display: block;
+    height: auto;
+    position: absolute;
+    z-index: 9999;
+    background: #505050;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 2px;
+    white-space: nowrap;
+    color: #fff;
+    overflow: auto;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.items-center {
+    align-items: center !important;
+}
+
+.content-center {
+    align-content: center !important;
+}
+
+.h-full {
+    height: 100% !important;
+}
+
+.mb-4 {
+    margin-bottom: 1rem !important;
+}
+
+.pb-3 {
+    padding-bottom: .75rem !important;
+}
+
+.w-full {
+    width: 100% !important;
+}
+
+.mi {
+    background: url(https://actappg2.misacdn.net/img/Sprites.b2ab16be.svg) no-repeat;
+    cursor: pointer;
+}
+
+.mi-24 {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    min-height: 24px;
+}
+
+.mi-16 {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+}
+
+.mi-64 {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    min-height: 64px;
+}
+
+.mi-company-selected {
+    background-position: -2224px -719px;
+}
+
+.mi-database-selected {
+    background-position: -1429px -307px;
+}
+
+.mi-database {
+    background-position: -2276px -720px;
+}
+
+.mi-lince-payment {
+    background-position: -2334px -720px;
+}
+
+.mi-password {
+    background-position: -2386px -720px;
+}
+
+.mi-account {
+    background-position: -2438px -720px;
+}
+
+.mi-security {
+    background-position: -2489px -720px;
+}
+
+.mi-introduce-points {
+    background-position: -2542px -720px;
+}
+
+.mi-terms-use {
+    background-position: -2596px -720px;
+}
+
+.mi-privacy {
+    background-position: -2796px -720px;
+}
+
+.mi-black-arrow-left {
+    background-position: -2644px -720px;
+}
+
+.mi-logout {
+    background-position: -2693px -720px;
+}
+
+.mi-chevron-right {
+    background-position: -80px -360px;
+}
+
+.mi-avatar {
+    background-position: -608px -1140px;
+}
+
+.mi-tick-check {
+    background-position: -848px -312px;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-transform: none;
+    text-decoration: none;
+    -webkit-text-decoration-line: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    -webkit-text-decoration-style: initial;
+    text-decoration-style: solid;
+    -webkit-text-decoration-color: initial;
+    text-decoration-color: initial;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+ul {
+    list-style-type: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b8bcc3;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
+/*! CSS Used from: https://actappg2.misacdn.net/css/router.e4dec16f.css */
+
+.dropdown-user .ms-dropdown--menu .list_option {
+    width: 312px;
+    height: auto;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header {
+    margin: 0;
+    min-height: 96px;
+    padding: 16px 20px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-icon {
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-icon .avatar img {
+    border-radius: 50%;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor {
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor .header-center {
+    text-align: center;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor .header-center .full-name {
+    font-size: 20px;
+    color: #1f1f1f;
+    font-weight: 700;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor .header-center .infor-account {
+    color: #666;
+    font-size: 13px;
+    padding-top: 4px;
+    max-width: 253px;
+    overflow-wrap: break-word;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content {
+    padding: 0 16px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center {
+    transition: all .2s ease;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .tenant-wrapper {
+    display: flex;
+    border: 1px solid #babec5;
+    border-radius: 3px;
+    height: 39px;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .tenant-wrapper .name {
+    flex: 1;
+    margin: auto;
+    overflow: hidden;
+    height: 18px;
+    width: 214px;
+    white-space: nowrap;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .tenant:hover {
+    background-color: #f4f5f8;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .company-databases:hover {
+    background-color: #f4f5f8;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .company-databases .database-info {
+    font-size: 13px;
+    display: flex;
+    border: 1px solid #babec5;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .hoverable:hover {
+    cursor: pointer;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container {
+    cursor: pointer;
+    gap: 0 10px;
+    padding: 8px 0;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin: 0 16px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container:hover {
+    background-color: #f4f5f8;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container .loyalty-wrap .loyalty-title {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container .loyalty-icon {
+    margin-left: 8px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_database {
+    height: 559px !important;
+    overflow: auto;
+}
+
+.back-action {
+    padding-top: 10px;
+    padding-left: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
+
+.database-info-list {
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    box-sizing: border-box;
+    min-height: 39px;
+    width: 268px;
+    margin: 8px auto;
+    padding: 0 8px;
+    gap: 0 10px;
+}
+
+.database-info-list:hover {
+    background-color: #f4f5f8;
+}
+
+.database-info-list .database-name {
+    flex: 1;
+    margin: auto;
+    overflow-wrap: break-word;
+    max-width: 225px;
+}
+
+.active-item {
+    background-color: #f4f5f8;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.action-button {
+    border-top: 1px solid #babec5;
+    margin-top: 9px;
+}
+
+.action-button:hover {
+    background-color: #f4f5f8;
+}
+
+.action-button .logout-action {
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+/*! CSS Used from: https://actappg2.misacdn.net/css/di.bf9df660.css */
+
+.dropdown-user .ms-dropdown--menu .list_option {
+    width: 312px;
+    height: auto;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header {
+    margin: 0;
+    min-height: 96px;
+    padding: 16px 20px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-icon {
+    justify-content: center;
+    margin: 10px;
+    align-items: center;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-icon .avatar img {
+    border-radius: 50%;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor {
+    justify-content: center;
+    align-items: center;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor .header-center {
+    text-align: center;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor .header-center .full-name {
+    font-size: 20px;
+    color: #1f1f1f;
+    font-weight: 700;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .header .user-infor .header-center .infor-account {
+    color: #666;
+    font-size: 13px;
+    padding-top: 4px;
+    max-width: 253px;
+    overflow-wrap: break-word;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content {
+    padding: 0 16px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center {
+    transition: all .2s ease;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .tenant-wrapper {
+    display: flex;
+    border: 1px solid #babec5;
+    border-radius: 3px;
+    height: 39px;
+    align-items: center;
+    padding: 0 12px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .tenant-wrapper .name {
+    flex: 1;
+    margin: auto;
+    overflow: hidden;
+    height: 18px;
+    width: 214px;
+    white-space: nowrap;
+    padding: 0 12px;
+    font-size: 14px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .tenant:hover {
+    background-color: #f4f5f8;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .company-databases:hover {
+    background-color: #f4f5f8;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .company-databases .database-info {
+    font-size: 13px;
+    display: flex;
+    border: 1px solid #babec5;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .content .content-center .hoverable:hover {
+    cursor: pointer;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container {
+    cursor: pointer;
+    gap: 0 10px;
+    padding: 8px 0;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin: 0 16px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container:hover {
+    background-color: #f4f5f8;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container .loyalty-wrap .loyalty-title {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.dropdown-user .ms-dropdown--menu .list_option .loyalty-container .loyalty-icon {
+    margin-left: 8px;
+}
+
+.dropdown-user .ms-dropdown--menu .list_database {
+    height: 559px !important;
+    overflow: auto;
+}
+
+.back-action {
+    padding-top: 10px;
+    padding-left: 20px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+}
+
+.database-info-list {
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    box-sizing: border-box;
+    min-height: 39px;
+    width: 268px;
+    margin: 8px auto;
+    padding: 0 8px;
+    gap: 0 10px;
+}
+
+.database-info-list:hover {
+    background-color: #f4f5f8;
+}
+
+.database-info-list .database-name {
+    flex: 1;
+    margin: auto;
+    overflow-wrap: break-word;
+    max-width: 225px;
+}
+
+.active-item {
+    background-color: #f4f5f8;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.action-button {
+    border-top: 1px solid #babec5;
+    margin-top: 9px;
+}
+
+.action-button:hover {
+    background-color: #f4f5f8;
+}
+
+.action-button .logout-action {
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.avatar{
+    border-radius: 50%;
+}
