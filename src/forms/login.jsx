@@ -3,7 +3,6 @@ import { WebSocketClient } from "../../lib/clients/websocketClient.js";
 import { KeyCodeEnum, RoleEnum } from "../../lib/models/enum.js";
 import { Toast } from "../../lib/toast.js";
 import { Html } from "../../lib/utils/html.js";
-import { NotificationBL } from "../components/notification.js";
 import { MenuComponent } from "../components/menu.js";
 import { EditForm } from "../../lib/editForm.js";
 import "../../lib/css/login.css";
