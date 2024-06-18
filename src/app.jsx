@@ -1,9 +1,9 @@
 import { Page, EditForm, ButtonPdf, Feature } from "../lib";
 import { MenuComponent } from "./components/menu";
 import React from "react";
-import { Profile } from "./components/profile";
-import { Lang } from "./components/lang";
-import { UserActive } from "./components/userActive";
+import { Profile } from "./components/profile.jsx";
+import { Lang } from "./components/lang.jsx";
+import { UserActive } from "./components/userActive.jsx";
 import { LoginBL } from "./forms/login.jsx";
 import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
@@ -41,7 +41,8 @@ export class App {
               <li className="nav-item dropdown" id="lang-active" data-name="Lang"></li>
               <li className="nav-item dropdown" id="user-active" data-name="UserActive"></li>
               <li className="nav-item dropdown" id="notification-list"></li>
-              <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile"></li>
+              <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile">
+              </li>
             </ul>
           </nav>
           <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
