@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import './profile.css';
+import { Client } from "../../lib/clients";
+import { LoginBL } from "../forms/login";
 
 const Profile = () => {
     const [state, setState] = useState(false);
@@ -9,6 +11,12 @@ const Profile = () => {
         if (menuRef.current && !menuRef.current.contains(event.target)) {
             setState(false);
         }
+    };
+
+    const handleLogout = (event) => {
+        Client.Token = null;
+        localStorage.removeItem("UserInfo");
+        LoginBL.Instance.Render();
     };
 
     useEffect(() => {
@@ -40,9 +48,9 @@ const Profile = () => {
                                     <div className=" flex user-infor">
                                         <div className="header-center">
                                             <div className="full-name">
-                                                CÔNG TY CỔ PHẦN TÍN TFT{" "}
+                                                {!Client.Token ? "" : Client.Token.FullName} {" "}
                                             </div>
-                                            <div className="infor-account">tindevtft@gmail.com</div>
+                                            <div className="infor-account">{!Client.Token ? "" : Client.Token.Email}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -89,7 +97,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                                 <div className="action-button">
-                                    <div className="loyalty-container logout-action flex items-center">
+                                    <div className="loyalty-container logout-action flex items-center" onClick={handleLogout}>
                                         <div className="pointer mi mi-24 loyalty-icon mi-logout"></div>
                                         <div className="loyalty-title">Đăng xuất</div>
                                     </div>

@@ -137,7 +137,6 @@
     border-top-right-radius: 8px;
     overflow: hidden;
     pointer-events: all;
-    background-color: var(--bg-color);
 }
 
 .chrome-tabs .chrome-tab[is-mini] .chrome-tab-content {

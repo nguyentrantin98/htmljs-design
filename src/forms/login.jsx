@@ -248,6 +248,7 @@ export class LoginBL extends EditForm {
         ]
     }
 
+    /** @type {LoginBL} */
     static get Instance() {
         if (!this._instance) {
             this._instance = new LoginBL();
@@ -267,7 +268,6 @@ export class LoginBL extends EditForm {
         let oldToken = Client.Token;
         if (!oldToken || new Date(oldToken.RefreshTokenExp) <= Client.EpsilonNow) {
             Html.Take("#app");
-            Html.Instance.Div.Id("Login");
             this.Element = Html.Context;
             super.Render();
             return;
