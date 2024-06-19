@@ -325,6 +325,7 @@ li {
     display: flex;
     flex-flow: row wrap;
     padding: 6px 0 6px 5px;
+    width: 65%;
 }
 
 .grid-wrapper .grid-toolbar .fa {
