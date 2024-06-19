@@ -24,38 +24,58 @@ npm run dev
 
 ```html
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="api" content="https://htmljs-design.softek.com.vn">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTMLJS</title>
-    <script type="module" src="/index.jsx"></script>
+    <base href="/" />
+    <meta name="api" content="https://htmljs-design.softek.com.vn" />
+    <meta charset="utf-8" />
+    <meta name="tenant" content="dev" />
+    <meta name="startup" content="admin" />
+    <meta name="file" content="https://cdn-tms.softek.com.vn/api" />
+    <meta name="config" content="https://lib.softek.com.vn/api" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>HTMJS DESIGN</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://htmlcs.softek.com.vn/icons/icon.png" />
+    <link rel="stylesheet" href="lib/css/root.css">
+    <link rel="stylesheet" href="lib/css/checkbox.css">
+    <link rel="stylesheet" href="lib/css/chrome-tabs.css">
+    <link rel="stylesheet" href="lib/css/datepicker.css">
+    <link rel="stylesheet" href="lib/css/dropdown.css">
+    <link rel="stylesheet" href="lib/css/fileupload.css">
+    <link rel="stylesheet" href="lib/css/fontawesome.min.css">
+    <link rel="stylesheet" href="lib/css/gridview.css">
+    <link rel="stylesheet" href="lib/css/header.css">
+    <link rel="stylesheet" href="lib/css/input.css">
+    <link rel="stylesheet" href="lib/css/main.css">
+    <link rel="stylesheet" href="lib/css/number.css">
+    <link rel="stylesheet" href="lib/css/section.css">
+    <link rel="stylesheet" href="lib/css/test.css">
+    <script type="module" src="/src/app.jsx"></script>
 </head>
-<body>
-    <div id="app">
 
-    </div>
+<body class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div id="app"></div>
 </body>
+
 </html>
 ```
 
 ```file
-index.jsx
+app.jsx
 ```
-```javascript
-import { Page, EditForm, ButtonPdf, Feature } from "../lib";
+```jsx
+import { Page, EditForm, Feature } from "../lib";
 import { MenuComponent } from "./components/menu";
 import React from "react";
-import { Profile } from "./components/profile";
-import { Lang } from "./components/lang";
-import { UserActive } from "./components/userActive";
 import { LoginBL } from "./forms/login.jsx";
 import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
 import { Utils } from "../lib/utils/utils";
 import ChromeTabs from "../lib/chrometab.js";
+import { ToastContainer } from "react-toastify";
+import Profile from "./components/profile.jsx";
+import "react-toastify/dist/ReactToastify.css";
 
 export class App {
   /** @type {Page} */
@@ -80,23 +100,24 @@ export class App {
           <nav className="main-header navbar navbar-expand navbar-light">
             <div className="chrome-tabs">
               <div className="chrome-tabs-content"></div>
-              <div className="chrome-tabs-bottom-bar"></div>
             </div>
             <ul className="navbar-nav ml-auto">
-              <li className="nav-item dropdown" id="lang-active" data-name="Lang"></li>
-              <li className="nav-item dropdown" id="user-active" data-name="UserActive"></li>
-              <li className="nav-item dropdown" id="notification-list"></li>
-              <li className="nav-item dropdown profile-info1" id="profile-info1" data-name="Profile"></li>
+              <li className="nav-item dropdown"></li>
+              <li className="nav-item dropdown"></li>
+              <li className="nav-item dropdown"><Profile />
+              </li>
             </ul>
+            <div className="chrome-tabs-bottom-bar"></div>
           </nav>
           <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
             <a href="/" className="brand-link">
               <img
-                src="https://fastweb.softek.com.vn/image/softek.png"
-                alt="F.A.S.T PRO"
+                src="https://htmlcs.softek.com.vn/icons/icon.png"
+                alt="HTMLJS DESIGN"
                 className="brand-image"
               />
-              <span className="brand-text font-weight-light">F.A.S.T PRO</span>
+              <span className="brand-text font-weight-light">HTMLJS DESIGN</span>
+              <div className="chrome-tabs-bottom-bar"></div>
             </a>
             <div className="sidebar">
               <div className="form-inline" style={{ marginTop: "6px" }}>
@@ -118,32 +139,15 @@ export class App {
           </div>
           <aside className="control-sidebar control-sidebar-light"></aside>
         </div>
+        <ToastContainer />
       </>
     );
     this.Meta.Components = [
       {
         ComponentType: () => {
-          return new Profile();
-        },
-        FieldName: "Profile",
-      },
-      {
-        ComponentType: () => {
           return new MenuComponent();
         },
         FieldName: "Menu",
-      },
-      {
-        ComponentType: () => {
-          return new Lang();
-        },
-        FieldName: "Lang",
-      },
-      {
-        ComponentType: () => {
-          return new UserActive();
-        },
-        FieldName: "UserActive",
       }
     ];
     this.MyApp = new Page();
@@ -199,13 +203,12 @@ App.Instance.Init()
 ```file
 login.jsx
 ```
-```javascript
+```jsx
 import { Client } from "../../lib/clients/client.js";
 import { WebSocketClient } from "../../lib/clients/websocketClient.js";
 import { KeyCodeEnum, RoleEnum } from "../../lib/models/enum.js";
 import { Toast } from "../../lib/toast.js";
 import { Html } from "../../lib/utils/html.js";
-import { NotificationBL } from "../components/notification.js";
 import { MenuComponent } from "../components/menu.js";
 import { EditForm } from "../../lib/editForm.js";
 import "../../lib/css/login.css";
@@ -451,6 +454,7 @@ export class LoginBL extends EditForm {
         ]
     }
 
+    /** @type {LoginBL} */
     static get Instance() {
         if (!this._instance) {
             this._instance = new LoginBL();
@@ -470,7 +474,6 @@ export class LoginBL extends EditForm {
         let oldToken = Client.Token;
         if (!oldToken || new Date(oldToken.RefreshTokenExp) <= Client.EpsilonNow) {
             Html.Take("#app");
-            Html.Instance.Div.Id("Login");
             this.Element = Html.Context;
             super.Render();
             return;
@@ -526,7 +529,6 @@ export class LoginBL extends EditForm {
                     resolve(false);
                     return;
                 }
-                Toast.Success(`Xin chào!`);
                 Client.Token = res.token;
                 login.UserName = "";
                 login.Password = "";
@@ -538,9 +540,12 @@ export class LoginBL extends EditForm {
                 this.Dispose();
                 App.Instance.RenderLayout().then(() => {
                     this.InitAppIfEmpty();
+                }).finally(() => {
+                    window.setTimeout(() => {
+                        Toast.Success(`Xin chào ` + Client.Token.FullName);
+                    }, 200);
                 });
-            })
-                .catch((e) => resolve(false));
+            }).catch((e) => resolve(false));
         });
         return tcs;
     }
