@@ -1,17 +1,14 @@
-import { Page, EditForm, ButtonPdf, Feature } from "../lib";
+import { Page, EditForm, Feature } from "../lib";
 import { MenuComponent } from "./components/menu";
 import React from "react";
-import Lang from "./components/lang.jsx";
-import UserActive from "./components/userActive.jsx";
 import { LoginBL } from "./forms/login.jsx";
 import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
 import { Utils } from "../lib/utils/utils";
 import ChromeTabs from "../lib/chrometab.js";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import Profile from "./components/profile.jsx";
-
+import "react-toastify/dist/ReactToastify.css";
 
 export class App {
   /** @type {Page} */
@@ -48,11 +45,12 @@ export class App {
           <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
             <a href="/" className="brand-link">
               <img
-                src="https://fastweb.softek.com.vn/image/softek.png"
-                alt="F.A.S.T PRO"
+                src="https://htmlcs.softek.com.vn/icons/icon.png"
+                alt="HTMLJS DESIGN"
                 className="brand-image"
               />
-              <span className="brand-text font-weight-light">F.A.S.T PRO</span>
+              <span className="brand-text font-weight-light">HTMLJS DESIGN</span>
+              <div className="chrome-tabs-bottom-bar"></div>
             </a>
             <div className="sidebar">
               <div className="form-inline" style={{ marginTop: "6px" }}>

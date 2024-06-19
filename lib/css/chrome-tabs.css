@@ -38,6 +38,13 @@
     cursor: default;
 }
 
+
+.chrome-tabs .fal,
+.fa {
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
 .chrome-tabs .chrome-tab .chrome-tab-dividers {
     position: absolute;
     top: 7px;
@@ -132,11 +139,12 @@
     bottom: 0;
     left: .5rem;
     right: .5rem;
-    padding: 9px 8px;
+    padding: 4px 8px 11px 5px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     overflow: hidden;
     pointer-events: all;
+    align-items: center;
 }
 
 .chrome-tabs .chrome-tab[is-mini] .chrome-tab-content {

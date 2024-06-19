@@ -50,7 +50,10 @@ export class MenuComponent extends EditableComponent {
         this._elementMainHeader.style.marginLeft = widthMenu;
         this._elementMainSidebar.style.width = widthMenu;
     }
-
+    /**
+     * @type {Feature[]}
+     */
+    Features;
     Render() {
         new Promise(() => {
             Client.Instance.SubmitAsync({
@@ -59,11 +62,137 @@ export class MenuComponent extends EditableComponent {
                 Method: "GET",
                 AllowAnonymous: true
             }).then(features => {
+                this.Features = features;
                 this.RenderMenu(features);
+                this.SearchMenu();
+                var main = document.querySelector("aside");
+                this.CreateResizableTable(main);
             });
         });
     }
 
+    /**
+     * @param {HTMLElement} col
+     */
+    CreateResizableTable(col) {
+        var resizer = document.createElement("div");
+        resizer.classList.add("resizer");
+        col.appendChild(resizer);
+        var button = document.createElement("button");
+        button.classList.add("resizer-button");
+        button.addEventListener(EventType.Click, () => {
+            if (parseInt(this._elementBrandLink.style.width.replace("px", "")) < 100) {
+                this._elementMain.style.marginLeft = "202px";
+                this._elementBrandLink.style.width = "202px";
+                this._elementMainHeader.style.marginLeft = "202px";
+                this._elementMainSidebar.style.width = "202px";
+                col.style.width = "202px";
+                col.style.minWidth = "202px";
+                col.style.maxWidth = "202px";
+                this._elementExpand.classList.replace("fa-arrow-circle-right", "fa-arrow-circle-left");
+            }
+            else {
+                this._elementMain.style.marginLeft = "45px";
+                this._elementBrandLink.style.width = "45px";
+                this._elementMainHeader.style.marginLeft = "45px";
+                this._elementMainSidebar.style.width = "45px";
+                col.style.width = "45px";
+                col.style.minWidth = "45px";
+                col.style.maxWidth = "45px";
+                this._elementExpand.classList.replace("fa-arrow-circle-left", "fa-arrow-circle-right");
+            }
+        });
+        this._elementExpand = document.createElement("i");
+        if (parseInt(this._elementBrandLink.style.width.replace("px", "")) < 100) {
+            this._elementExpand.classList.add("fal");
+            this._elementExpand.classList.add("fa-arrow-circle-right");
+        }
+        else {
+            this._elementExpand.classList.add("fal");
+            this._elementExpand.classList.add("fa-arrow-circle-left");
+        }
+        button.appendChild(this._elementExpand);
+        col.appendChild(button);
+        this.CreateResizableColumn(col, resizer);
+    }
+
+    /**
+     * @param {HTMLElement} col
+     * @param {HTMLElement} resizer
+     */
+    CreateResizableColumn(col, resizer) {
+        this.x = 0;
+        this.w = 0;
+        resizer.addEventListener("mousedown", (e) => this.MouseDownHandler(e, col, resizer));
+    }
+    /** @type {MouseEvent} */
+    mouseMoveHandler;
+    /** @type {MouseEvent} */
+    mouseUpHandler;
+    /**
+    * @param {HTMLElement} col
+    * @param {HTMLElement} resizer
+    * @param {MouseEvent} mouse
+    */
+    MouseDownHandler(mouse, col, resizer) {
+        mouse.preventDefault();
+        this.x = mouse.clientX;
+        var styles = window.getComputedStyle(col);
+        this.w = parseFloat((styles.width.replace("px", "") == "") ? "0" : styles.width.replace("px", ""));
+        this.mouseMoveHandler = (a) => this.MouseMoveHandler(a, col, resizer);
+        this.mouseUpHandler = (a) => this.MouseUpHandler(a, col, resizer);
+        document.addEventListener("mousemove", this.mouseMoveHandler);
+        document.addEventListener("mouseup", this.mouseUpHandler);
+        resizer.AddClass("resizing");
+    }
+
+    /**
+    * @param {HTMLElement} col
+    * @param {HTMLElement} resizer
+    * @param {MouseEvent} mouse
+    */
+    MouseMoveHandler(mouse, col, resizer) {
+        mouse.preventDefault();
+        var dx = mouse.clientX - this.x;
+        col.style.width = `${this.w + dx}px`;
+        col.style.minWidth = `${this.w + dx}px`;
+        col.style.maxWidth = `${this.w + dx}px`;
+        this._elementMain.style.marginLeft = `${this.w + dx}px`;
+        this._elementBrandLink.style.width = `${this.w + dx}px`;
+        this._elementMainHeader.style.marginLeft = `${this.w + dx}px`;
+        if (this.w + dx < 100) {
+            this._elementExpand.classList.replace("fa-arrow-circle-left", "fa-arrow-circle-right");
+        }
+        else {
+            this._elementExpand.classList.replace("fa-arrow-circle-right", "fa-arrow-circle-left");
+        }
+        window.localStorage.setItem("menu-width", `${this.w + dx}px`);
+    }
+
+    /**
+    * @param {HTMLElement} col
+    * @param {HTMLElement} resizer
+    * @param {MouseEvent} mouse
+    */
+    MouseUpHandler(mouse, col, resizer) {
+        mouse.preventDefault();
+        resizer.classList.remove("resizing");
+        document.removeEventListener("mousemove", this.mouseMoveHandler);
+        document.removeEventListener("mouseup", this.mouseUpHandler);
+    }
+
+    SearchMenu() {
+        /** @type {HTMLInputElement}*/
+        var search = document.querySelector(".form-control-sidebar");
+        search.addEventListener(EventType.Input, (e) => {
+            if (search.value == "") {
+                this.RenderMenu(this.Features);
+                return;
+            }
+            var menus = this.Features.filter(x => x.Label.toLowerCase().includes(search.value.toLowerCase()));
+            this.RenderMenu(menus);
+        });
+    }
     /**
      * Renders the menu using the provided features.
      * @param {Feature[]} features - The array of Feature objects.

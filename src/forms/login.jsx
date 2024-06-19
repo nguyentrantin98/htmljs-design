@@ -323,7 +323,6 @@ export class LoginBL extends EditForm {
                     resolve(false);
                     return;
                 }
-                Toast.Success(`Xin chào!`);
                 Client.Token = res.token;
                 login.UserName = "";
                 login.Password = "";
@@ -335,9 +334,12 @@ export class LoginBL extends EditForm {
                 this.Dispose();
                 App.Instance.RenderLayout().then(() => {
                     this.InitAppIfEmpty();
+                }).finally(() => {
+                    window.setTimeout(() => {
+                        Toast.Success(`Xin chào ` + Client.Token.FullName);
+                    }, 200);
                 });
-            })
-                .catch((e) => resolve(false));
+            }).catch((e) => resolve(false));
         });
         return tcs;
     }

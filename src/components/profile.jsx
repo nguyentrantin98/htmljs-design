@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import './profile.css';
 import { Client } from "../../lib/clients";
 import { LoginBL } from "../forms/login";
+import { TabEditor } from "../../lib/tabEditor";
 
 const Profile = () => {
     const [state, setState] = useState(false);
@@ -16,6 +17,7 @@ const Profile = () => {
     const handleLogout = (event) => {
         Client.Token = null;
         localStorage.removeItem("UserInfo");
+        TabEditor.Tabs.forEach(x => x.Dispose());
         LoginBL.Instance.Render();
     };
 

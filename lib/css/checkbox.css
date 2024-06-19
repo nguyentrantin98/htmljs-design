@@ -39,8 +39,8 @@
 }
 
 .checkbox .myCheckbox:after {
-    left: 7px;
-    top: 3px;
+    left: 6px;
+    top: 2px;
     width: 4px;
     height: 7px;
     border: solid var(--bg-border);
