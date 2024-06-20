@@ -434,7 +434,7 @@ li {
 }
 
 .grid-wrapper.sticky {
-    max-height: calc(100vh - 165px);
+    max-height: calc(100vh - 5rem);
 }
 
 .grid-wrapper.sticky .table-wrapper {
