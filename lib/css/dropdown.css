@@ -43,8 +43,12 @@
     flex-flow: column nowrap;
     min-height: 280px;
     max-height: 280px;
-    overflow: auto;
+    min-width: 300px;
     justify-content: space-between;
+}
+
+.result-wrapper .grid-toolbar span {
+    min-width: 1rem;
 }
 
 .result-wrapper>.grid-wrapper .grid-toolbar:first-child {
