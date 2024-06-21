@@ -110,7 +110,7 @@ input {
 
 
 .popup-content .scroll-content {
-  max-height: calc(100vh - 9.4rem) !important;
+  max-height: calc(100vh - 10.4rem) !important;
   overflow-y: auto;
   overflow-x: hidden;
 }
