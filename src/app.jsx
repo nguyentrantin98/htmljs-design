@@ -8,7 +8,6 @@ import { Utils } from "../lib/utils/utils";
 import ChromeTabs from "../lib/chrometab.js";
 import { ToastContainer } from "react-toastify";
 import Profile from "./components/profile.jsx";
-import "react-toastify/dist/ReactToastify.css";
 
 export class App {
   /** @type {Page} */
