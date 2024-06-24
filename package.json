@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "9.0.0",
+  "version": "9.0.1",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "https://github.com/nguyentrantin98/htmljs-design.git"
   },
-  "homepage": "https://htmlcs.softek.com.vn",
+  "homepage": "https://github.com/nguyentrantin98/example-htmljs-code",
   "files": [
     "lib",
     "README.md"
