@@ -9,7 +9,7 @@ Example code [git](https://github.com/nguyentrantin98/example-htmljs-code).
 ## Usage
 
 ```bash
-npm i htmljs-code react --save
+npm i htmljs-code --save
 ```
 
 ```bash
