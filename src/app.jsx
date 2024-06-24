@@ -5,7 +5,7 @@ import { LoginBL } from "./forms/login.jsx";
 import { ComponentExt } from "../lib/utils/componentExt";
 import { Client } from "../lib/clients";
 import { Utils } from "../lib/utils/utils";
-import ChromeTabs from "../lib/chrometab.js";
+import { ChromeTabs } from "../lib/chrometab.js";
 import { ToastContainer } from "react-toastify";
 import Profile from "./components/profile.jsx";
 
