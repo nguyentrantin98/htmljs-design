@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "8.0.10",
+  "version": "8.0.12",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -27,7 +27,6 @@
     "dayjs": "^1.11.11",
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
-    "monaco-editor": "^0.50.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
