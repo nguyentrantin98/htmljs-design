@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "41.0.2",
+  "version": "41.0.89",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -24,6 +24,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@canvasjs/charts": "^3.9.0",
     "dayjs": "^1.11.11",
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
