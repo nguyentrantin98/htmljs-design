@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "51.0.12",
+  "version": "51.0.23",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -30,7 +30,7 @@
     "draggabilly": "^3.0.0",
     "quill": "^2.0.2",
     "quill-html-edit-button": "^3.0.0",
-    "react": "^18.3.1",
+    "react": "^18.3.1", 
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
     "reconnecting-websocket": "^4.4.0",
