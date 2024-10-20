@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "57.0.100",
+  "version": "60.0.14",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,7 +28,6 @@
     "dayjs": "^1.11.11",
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
-    "html2pdf.js": "^0.10.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
