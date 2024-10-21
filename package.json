@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "60.0.14",
+  "version": "61.0.1",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
