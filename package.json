@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "61.0.2",
+  "version": "61.0.16",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -24,10 +24,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@canvasjs/charts": "^3.9.0",
     "dayjs": "^1.11.11",
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
+    "highcharts": "^11.4.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
