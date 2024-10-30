@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "61.0.83",
+  "version": "61.0.96",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -25,6 +25,7 @@
   "license": "ISC",
   "dependencies": {
     "apexcharts": "^3.54.1",
+    "apextree": "^1.3.0",
     "dayjs": "^1.11.11",
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
