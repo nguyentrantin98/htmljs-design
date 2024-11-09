@@ -364,7 +364,7 @@ export class LoginBL extends EditForm {
     InitAppIfEmpty() {
         const systemRoleId = RoleEnum.System;
         // @ts-ignore
-        Client.Instance.SystemRole = Client.Token.RoleIds.some(systemRoleId.toString());
+        Client.Instance.SystemRole = Client.Token.RoleIds.some(x => x == systemRoleId.toString());
         if (this._initApp) {
             return;
         }
