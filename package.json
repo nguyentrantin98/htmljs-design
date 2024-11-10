@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "62.0.147",
+  "version": "62.0.157",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -34,7 +34,6 @@
     "react-toastify": "^10.0.5",
     "reconnecting-websocket": "^4.4.0",
     "tinymce": "^7.3.0",
-    "vite": "^5.2.13",
-    "xlsx": "^0.18.5"
+    "vite": "^5.2.13"
   }
 }
