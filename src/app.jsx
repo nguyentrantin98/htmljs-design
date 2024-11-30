@@ -120,8 +120,9 @@ export class App {
   */
   GetFeatureNameFromUrl() {
     let feature = window.location.pathname.toLowerCase().replace(Client.BaseUri.toLowerCase(), "");
-    if (feature.startsWith(Utils.Slash)) {
-      feature = feature.substring(1);
+    if (feature.includes("/")) {
+      let segments = feature.split("/");
+      feature = segments[segments.length - 1] || segments[segments.length - 2];
     }
     if (!feature.trim() || feature == undefined) {
       return null;
