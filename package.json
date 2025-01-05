@@ -1,6 +1,6 @@
 {
   "name": "htmljs-code",
-  "version": "66.0.75",
+  "version": "67.0.21",
   "description": "",
   "main": "lib/index.js",
   "module": "lib/index.js",
@@ -28,6 +28,7 @@
     "decimal.js": "^10.4.3",
     "draggabilly": "^3.0.0",
     "echarts": "^5.5.1",
+    "flatpickr": "^4.6.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-toastify": "^10.0.5",
