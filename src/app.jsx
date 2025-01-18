@@ -1,13 +1,27 @@
-import { Page, EditForm, Feature } from "../lib";
-import { MenuComponent } from "./components/menu";
 import React from "react";
-import { LoginBL } from "./forms/login.jsx";
-import { ComponentExt } from "../lib/utils/componentExt";
-import { Client } from "../lib/clients";
-import { Utils } from "../lib/utils/utils";
-import { ChromeTabs } from "../lib/chrometab.js";
 import { ToastContainer } from "react-toastify";
-import Profile from "./components/profile.jsx";
+import {
+  Page,
+  EditForm,
+  Feature,
+  ComponentExt,
+  ChromeTabs,
+  LangSelect,
+  Client,
+  EditableComponent,
+  TabEditor,
+} from "../lib";
+import { Spinner } from "../lib/spinner.js";
+import { MenuComponent } from "./components/menu";
+import { LoginBL } from "./forms/login.jsx";
+import UserDropdown from "./components/userDropdown.jsx";
+import NotificationDropdown from "./components/NotificationDropdown.jsx";
+import LangComponent from "./components/LangComponent.jsx";
+import store from "./redux/store.js";
+import { Provider } from 'react-redux';
+import UserActive from "./components/UserActive.jsx";
+import ChatBot from "./components/ChatBot.jsx";
+import './index.css'
 
 export class App {
   /** @type {Page} */
@@ -24,55 +38,123 @@ export class App {
   /** @type {Feature} */
   Meta;
   constructor() {
-    this.Meta = new Feature;
+    this.Meta = new Feature();
     this.Meta.ParentElement = document.getElementById("app");
     this.Meta.Layout = () => (
-      <>
-        <div className="wrapper">
-          <nav className="main-header navbar navbar-expand navbar-light">
-            <div className="chrome-tabs">
-              <div className="chrome-tabs-content"></div>
+      <Provider store={store}>
+        <div className="shadow-header"></div>
+        <header className="header-navbar fixed">
+          <div className="header-wrapper">
+            <div className="header-left">
+              <div className="sidebar-toggle action-toggle"><i className="fal fa-bars"></i></div>
             </div>
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item dropdown"></li>
-              <li className="nav-item dropdown"></li>
-              <li className="nav-item dropdown"><Profile />
+            <div className="chrome-tabs">
+              <div className="chrome-tabs-content">
+              </div>
+            </div>
+            <div className="header-content">
+              <div className="theme-switch-icon"></div>
+              <LangComponent />
+              <UserActive />
+              <div className="notification dropdown">
+                <a data-bs-toggle="dropdown" aria-expanded="false" onClick={async () => {
+                  var tab = ChromeTabs.tabs.find(x => x.content.Show);
+                  if (tab) {
+                    var popupDetail = tab.content.Children.find(x => x.Popup);
+                    if (popupDetail) {
+                      var popup2Detail = popupDetail.Children.find(x => x.Popup);
+                      if (popup2Detail) {
+                        var form = {
+                          Id: this.MyApp.EditForm.Uuid7.NewGuid(),
+                          RecordId: popup2Detail.Entity.Id,
+                          FormatChat: popup2Detail.Entity.FormatChat,
+                          Icon: popup2Detail.Entity.Icon,
+                          EntityId: popup2Detail.Meta.EntityId
+                        };
+                        var createConvert = await Client.Instance.PostAsync(form, "/api/Conversation");
+                        var tab1 = ChromeTabs.tabs.find(x => x.content.Meta.Name == "chat-editor");
+                        if (tab1) {
+                          tab1.content.Dispose();
+                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
+                        }
+                        else {
+                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
+                        }
+                      }
+                      else {
+                        var form = {
+                          Id: this.MyApp.EditForm.Uuid7.NewGuid(),
+                          RecordId: popupDetail.Entity.Id,
+                          FormatChat: popupDetail.Entity.FormatChat,
+                          Icon: popupDetail.Entity.Icon,
+                          EntityId: popupDetail.Meta.EntityId
+                        };
+                        var createConvert = await Client.Instance.PostAsync(form, "/api/Conversation");
+                        var tab1 = ChromeTabs.tabs.find(x => x.content.Meta.Name == "chat-editor");
+                        if (tab1) {
+                          tab1.content.Dispose();
+                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
+                        }
+                        else {
+                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
+                        }
+                      }
+                    }
+                    else {
+                      this.updateView();
+                    }
+                  }
+                  else {
+                    this.updateView();
+                  }
+                }}>
+                  <i className="far fa-envelope"></i>
+                </a>
+              </div>
+              <NotificationDropdown />
+              <UserDropdown editForm={this.MyApp.EditForm} />
+            </div>
+          </div>
+        </header>
+        <nav className="main-sidebar ps-menu">
+          <div className="sidebar-header">
+            <a className="text"><img src={Client.Token.Vendor.Logo} /></a>
+            <div className="close-sidebar action-toggle">
+              <i className="ti-close"></i>
+            </div>
+          </div>
+          <div className="sidebar-content" data-name="Menu">
+          </div>
+        </nav>
+        <div className="main-content" id="tab-content">
+        </div>
+        <div className="settings">
+          <div className="settings-icon-wrapper">
+            <div className="settings-icon">
+              <i className="ti ti-settings"></i>
+            </div>
+          </div>
+          <div className="settings-content">
+            <ul>
+              <li className="fix-header">
+                <div className="fix-header-wrapper">
+                  <div className="form-check form-switch lg">
+                    <a href="https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx" target="_blank">Vietcombank Exchange</a>
+                  </div>
+                </div>
               </li>
             </ul>
-            <div className="chrome-tabs-bottom-bar"></div>
-          </nav>
-          <aside className="main-sidebar main-sidebar-custom sidebar-light-info elevation-1">
-            <a href="/" className="brand-link">
-              <img
-                src="https://htmlcs.softek.com.vn/icons/icon.png"
-                alt="HTMLJS DESIGN"
-                className="brand-image"
-              />
-              <span className="brand-text font-weight-light">HTMLJS DESIGN</span>
-              <div className="chrome-tabs-bottom-bar"></div>
-            </a>
-            <div className="sidebar">
-              <div className="form-inline" style={{ marginTop: "6px" }}>
-                <div className="input-group">
-                  <input
-                    className="form-control form-control-sidebar"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </div>
-              </div>
-              <nav className="mt-2" id="menu" data-name="Menu"></nav>
-            </div>
-          </aside>
-          <div
-            className="content-wrapper"
-            id="tab-content">
+            <ul className="exchange-rate">
+            </ul>
           </div>
-          <aside className="control-sidebar control-sidebar-light"></aside>
+        </div>
+        <footer>
+        </footer>
+        <div className="overlay action-toggle">
         </div>
         <ToastContainer />
-      </>
+        <ChatBot />
+      </Provider>
     );
     this.Meta.Components = [
       {
@@ -93,41 +175,241 @@ export class App {
     this.MyApp.EditForm.Meta = this.Meta;
   }
 
-  Init() {
+  updateView() {
+    this.MyApp.EditForm.OpenTab('chat-editor', {});
+    window.setTimeout(() => {
+      var tab = ChromeTabs.tabs.find(x => x.content.Show);
+      var chat = tab.content.ChildCom.find(x => x.ComponentType == "Chat");
+      if (chat) {
+        chat.UpdateView();
+      }
+    }, 500);
+  }
+
+  async getExchangeRate() {
+    var rate = await fetch("https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx");
+    const xmlString = await rate.text();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+    const json = this.extractExchangeRates(xmlDoc);
+    json.push({
+      CurrencyCode: "VND",
+      CurrencyName: "VND",
+      Buy: "1",
+      Transfer: "1",
+      Sell: "1"
+    });
+    var element = document.querySelector(".exchange-rate");
+    element.innerHTML = '';
+    const ext = json.reduce((acc, cur) => {
+      var li = document.createElement("li");
+      li.textContent = cur.CurrencyCode + " : " + cur.Transfer;
+      element.appendChild(li);
+      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.Transfer.replace(/,/g, ''));
+      return acc;
+    }, {});
+    var usd = this.MyApp.EditForm.Decimal(json.find(x => x.CurrencyCode == "USD").Transfer.replace(/,/g, ''));
+    const ext1 = json.reduce((acc, cur) => {
+      const eurToUsdRate = (this.MyApp.EditForm.Decimal(1)).div(this.MyApp.EditForm.Decimal(cur.Transfer.replace(/,/g, ''))); // Tỷ giá EUR => USD
+      if (cur.CurrencyCode == "VND") {
+        const multipliedRate = eurToUsdRate.mul(usd);
+        acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(1).div(multipliedRate);
+      }
+      else {
+        if (cur.CurrencyCode == "USD") {
+          acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(1);
+        }
+        else {
+          const multipliedRate = eurToUsdRate.mul(usd);
+          acc[cur.CurrencyCode] = multipliedRate;
+        }
+      }
+      return acc;
+    }, {});
+    EditableComponent.ExchangeRateVND = ext;
+    localStorage.setItem("ExchangeRateVND", JSON.stringify(ext));
+    EditableComponent.ExchangeRateUSD = ext1;
+    localStorage.setItem("ExchangeRateUSD", JSON.stringify(ext1));
+  }
+
+  async Init() {
+    Spinner.Init();
+    var data = await fetch(Client.api + "/api/dictionary");
+    var rs = await data.json();
+    try {
+      var config = await fetch(Client.api + "/api/webConfig");
+      var rsConfig = await config.json();
+      const map = rsConfig.reduce((acc, cur) => {
+        acc[cur.Id] = cur.Value;
+        return acc;
+      }, {});
+      LangSelect._webConfig = map;
+    } catch {
+      localStorage.setItem("ConfigNumber", 3);
+    }
+    try {
+      var saleFunction = await fetch(Client.api + "/api/salesFunction");
+      var rsSaleFunction = await saleFunction.json();
+      const mapSaleFunction = rsSaleFunction.reduce((acc, cur) => {
+        acc[cur.Code] = cur.IsYes;
+        return acc;
+      }, {});
+      localStorage.setItem("SalesFunction", JSON.stringify(mapSaleFunction));
+    } catch {
+    }
+    localStorage.setItem("Dictionary", JSON.stringify(rs));
+    const cul = localStorage.getItem("Culture") || "en";
+    const map = rs.filter(x => x.LangCode == cul).reduce((acc, cur) => {
+      acc[cur.Key] = cur.Value;
+      return acc;
+    }, {});
+    if (!LangSelect.Culture) {
+      LangSelect.Culture = cul;
+    }
+    LangSelect._dictionaries = map;
+    localStorage.setItem(LangSelect.Culture, JSON.stringify(map));
+    if (Client.Token) {
+      Client.GetToken(Client.Token).then((token) => {
+        Client.Token = token;
+        LoginBL.Instance.Render();
+      }).catch(() => {
+        this.removeUser();
+      });
+    }
+    else {
+      LoginBL.Instance.Render();
+    }
+  }
+
+  extractExchangeRates(xmlDoc) {
+    const exchangeRates = [];
+    const exrateElements = xmlDoc.getElementsByTagName("Exrate");
+
+    for (let i = 0; i < exrateElements.length; i++) {
+      const exrate = exrateElements[i];
+      const rate = {
+        CurrencyCode: exrate.getAttribute("CurrencyCode"),
+        CurrencyName: exrate.getAttribute("CurrencyName").trim(),
+        Buy: exrate.getAttribute("Buy"),
+        Transfer: exrate.getAttribute("Transfer"),
+        Sell: exrate.getAttribute("Sell")
+      };
+      exchangeRates.push(rate);
+    }
+
+    return exchangeRates;
+  }
+
+  removeUser() {
+    Client.Token = null;
+    localStorage.removeItem("UserInfo");
     LoginBL.Instance.Render();
   }
 
   async RenderLayout() {
     await this.MyApp.Render();
-    var el = document.querySelector('.chrome-tabs')
+    var el = document.querySelector(".chrome-tabs");
     if (el != null) {
       ChromeTabs.init(el);
     }
+    Main.init()
     this.LoadByFromUrl();
+    await this.getExchangeRate();
+    var dataExt = await fetch(Client.api + "/api/exchangeRate");
+    var rsExt = await dataExt.json();
+    const ext2 = rsExt.reduce((acc, cur) => {
+      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateSaleVND);
+      return acc;
+    }, {});
+    const ext3 = rsExt.reduce((acc, cur) => {
+      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateSaleUSD);
+      return acc;
+    }, {});
+    EditableComponent.ExchangeRateSaleVND = ext2;
+    EditableComponent.ExchangeRateSaleUSD = ext3;
+    localStorage.setItem("ExchangeRateSaleVND", JSON.stringify(ext2));
+    localStorage.setItem("ExchangeRateSaleUSD", JSON.stringify(ext3));
+    //
+    const ext4 = rsExt.reduce((acc, cur) => {
+      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateProfitVND);
+      return acc;
+    }, {});
+    const ext5 = rsExt.reduce((acc, cur) => {
+      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateProfitUSD);
+      return acc;
+    }, {});
+    EditableComponent.ExchangeRateProfitVND = ext4;
+    EditableComponent.ExchangeRateProfitUSD = ext5;
+    localStorage.setItem("ExchangeRateProfitVND", JSON.stringify(ext4));
+    localStorage.setItem("ExchangeRateProfitUSD", JSON.stringify(ext5));
+    window.setInterval(async () => {
+      await this.getExchangeRate();
+    }, 60 * 60 * 1000);
   }
 
   LoadByFromUrl() {
-    const fName = this.GetFeatureNameFromUrl() || "";
-    if (!fName) {
+    var fName = this.GetFeatureNameFromUrl() || { pathname: "", params: null };
+    if (fName.pathname == "") {
       return;
     }
-    ComponentExt.InitFeatureByName(fName, true).Done();
+    ComponentExt.InitFeatureByName(fName.pathname, true).then(tab => {
+      window.setTimeout(() => {
+        if (fName.params.Id) {
+          Client.Instance.GetByIdAsync(tab.Meta.EntityId, [fName.params.Id]).then(data => {
+            if (data.data[0]) {
+              tab.OpenPopup(fName.params.Popup, data.data[0]);
+              window.setTimeout(() => {
+                if (fName.params.Popup2) {
+                  var popup = tab.Children.find(x => x.Popup);
+                  Client.Instance.SubmitAsync({
+                    Url: `/api/feature/getFeature`,
+                    Method: "POST",
+                    JsonData: JSON.stringify({
+                      Name: fName.params.Popup2
+                    })
+                  }).then(item => {
+                    Client.Instance.GetByIdAsync(item.EntityId, [fName.params.Id2]).then(data2 => {
+                      if (data2.data[0]) {
+                        popup.OpenPopup(fName.params.Popup2, data2.data[0]);
+                      }
+                    });
+                  })
+
+
+                }
+              }, 500);
+            }
+          });
+        }
+      }, 700);
+    });
     return fName;
   }
 
   /**
-  * @returns {string|null}
-  */
+   * @returns {string | null}
+        */
   GetFeatureNameFromUrl() {
-    let feature = window.location.pathname.toLowerCase().replace(Client.BaseUri.toLowerCase(), "");
-    if (feature.includes("/")) {
-      let segments = feature.split("/");
-      feature = segments[segments.length - 1] || segments[segments.length - 2];
+    let hash = window.location.hash; // Get the full hash (e.g., '#/chat-editor?Id=-00612540-0000-0000-8000-4782e9f44882')
+
+    if (hash.startsWith("#/")) {
+      hash = hash.replace("#/", ""); // Remove the leading '#/'
     }
-    if (!feature.trim() || feature == undefined) {
-      return null;
+
+    if (!hash.trim() || hash == undefined) {
+      return null; // Return null if the hash is empty or undefined
     }
-    return feature;
+
+    let [pathname, queryString] = hash.split("?"); // Split the hash into pathname and query string
+    let params = new URLSearchParams(queryString); // Parse the query string into a URLSearchParams object
+    if (pathname.includes("/")) {
+      let segments = pathname.split("/");
+      pathname = segments[segments.length - 1] || segments[segments.length - 2];
+    }
+    return {
+      pathname: pathname || null,  // Pathname (e.g., 'chat-editor')
+      params: Object.fromEntries(params.entries()) // Query parameters (e.g., { Id: '-00612540-0000-0000-8000-4782e9f44882' })
+    };
   }
 }
-App.Instance.Init()
+App.Instance.Init();

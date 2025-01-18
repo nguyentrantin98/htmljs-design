@@ -1,0 +1,45 @@
+body {
+    font-family: 'Montserrat';
+    font-size: 10pt;
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table {
+    font-size: unset;
+}
+
+table>tr>td {
+    vertical-align: top;
+}
+
+td>span,
+td>p,
+td>div,
+td>strong {
+    padding-left: 2px;
+    vertical-align: top;
+    white-space: pre-wrap;
+}
+
+.logo {
+    min-width: 110px;
+    min-height: 56px;
+}
+
+.dashed tbody td {
+    border-bottom: 0.01px dashed rgb(126, 140, 141) !important;
+}
+
+.a4 {
+    display: flex;
+    justify-content: center;
+    border: 1px solid red;
+    width: 210mm;
+}

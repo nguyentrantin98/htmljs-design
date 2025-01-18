@@ -1,52 +1,85 @@
-import React, { useState, useEffect, useRef } from "react";
-import './profile.css';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import DropdownComponent from './DropdownComponent';
+import { Client } from 'htmljs-code';
+import { Toast } from '../../lib/toast';
+import { fetchData, addData, updateData } from '../redux/genericSlice'; // Update to use the Redux Toolkit slice
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+
+// Extend dayjs with the necessary plugins
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
+dayjs.extend(localizedFormat);
+
+const USERACTIVE_KEY = 'usersactive';
 
 const UserActive = () => {
-    const [state, setState] = useState(false);
-    const menuRef = useRef(null);
-
-    const handleClickOutside = (event) => {
-        if (menuRef.current && !menuRef.current.contains(event.target)) {
-            setState(false);
-        }
-    };
-
+    const dispatch = useDispatch();
+    const taskNotification = useSelector(state => state.generic[USERACTIVE_KEY] || []); // Adjusted to use the slice state
     useEffect(() => {
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+        const fetchNotificationsData = async () => {
+            const response = await Client.Instance.PostAsync({}, "/api/GetUserActive");
+            dispatch(fetchData({ key: USERACTIVE_KEY, data: response }));
         };
-    }, []);
+        const handleUserConnectMessage = (data) => {
+            fetchNotificationsData();
+        };
+        const handleUserDisConnectMessage = (data) => {
+            fetchNotificationsData();
+        };
+        window.addEventListener("UserConnect", handleUserConnectMessage);
+        window.addEventListener("UserDisconnect", handleUserDisConnectMessage);
+        return () => {
+            window.removeEventListener("UserConnect", handleUserConnectMessage);
+            window.removeEventListener("UserDisconnect", handleUserDisConnectMessage);
+        };
+    }, [dispatch]);
+
+    const toggleContent = (
+        <>
+            <i className="fal fa-user-friends"></i>
+            <span className="badge">{taskNotification?.filter(x => !x.Read).length || ""}</span>
+        </>
+    );
+
+    const dropdownContent = (
+        <>
+            <div className="menu-header">
+                <a className="dropdown-item" href="#">User Active</a>
+            </div>
+            <div className="menu-content ps-menu" style={{ overflow: 'auto' }}>
+                {taskNotification?.map((item, index) => (
+                    <a
+                        key={index}
+                    >
+                        <div className={`message-icon text-info`}>
+                            <img className="message-icon" src={item.Avatar} />
+                        </div>
+                        <div className={`message-content`}>
+                            <div className="header">
+                                {item.NickName}
+                            </div>
+                            <div className="body">
+                                {item.FullName}
+                                <div className="time">{item.Ip}</div>
+                            </div>
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </>
+    );
 
     return (
-        <div className="action" ref={menuRef}>
-            <div className="profile" onClick={() => setState(!state)}>
-                ADMIN
-            </div>
-            <div className={state ? "menu active" : "menu"}>
-                <h3>Someone Famous<br /><span>Website Designer</span></h3>
-                <ul>
-                    <li>
-                        <img src="./assets/icons/user.png" alt="user icon" /><a href="#">My profile</a>
-                    </li>
-                    <li>
-                        <img src="./assets/icons/edit.png" alt="edit icon" /><a href="#">Edit profile</a>
-                    </li>
-                    <li>
-                        <img src="./assets/icons/envelope.png" alt="envelope icon" /><a href="#">Inbox</a>
-                    </li>
-                    <li>
-                        <img src="./assets/icons/settings.png" alt="settings icon" /><a href="#">Setting</a>
-                    </li>
-                    <li>
-                        <img src="./assets/icons/question.png" alt="question icon" /><a href="#">Help</a>
-                    </li>
-                    <li>
-                        <img src="./assets/icons/log-out.png" alt="logout icon" /><a href="#">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <DropdownComponent
+            toggleContent={toggleContent}
+            dropdownContent={dropdownContent}
+            classNameChild="md"
+            className="notification dropdown"
+        />
     );
 };
 
