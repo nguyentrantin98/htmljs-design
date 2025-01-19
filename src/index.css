@@ -1490,6 +1490,20 @@ div {
     align-items: start;
 }
 
+.backdrop2 {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 4.7rem);
+    background-color: rgba(0, 0, 0, .5);
+    justify-content: right;
+    z-index: 40;
+    border-radius: 5px;
+    align-items: start;
+}
+
 .backdrop-spinner {
     position: absolute;
     top: 0;
@@ -4241,4 +4255,9 @@ table.table {
 .choices__list--dropdown .choices__item {
     padding: 4px 8px;
     /* Padding của các mục dropdown */
+}
+
+.popup-content.form-dialog {
+    min-height: calc(100vh - 5.4rem);
+    width: 1200px;
 }
