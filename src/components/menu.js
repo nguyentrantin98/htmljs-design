@@ -116,7 +116,7 @@ export class MenuComponent extends EditableComponent {
           Html.Instance.Event(EventType.ContextMenu, (e) =>
             this.MenuItemContextMenu(e, item)
           );
-          Html.Instance.Span.IText(item.Label).End.End.Render();
+          Html.Instance.Span.IText(item.Label, this.EditForm.Meta.Label).End.End.Render();
         } else {
           var check = item.InverseParent && item.InverseParent.length > 0;
           Html.Instance.Li.Render();
@@ -141,7 +141,7 @@ export class MenuComponent extends EditableComponent {
             this.MenuItemClick(e, item)
           )
             .I.ClassName(item.Icon)
-            .End.Span.IText(item.Label)
+            .End.Span.IText(item.Label, this.EditForm.Meta.Label)
             .End.Render();
           Html.Instance.EndOf(ElementType.a);
           if (check) {
@@ -188,7 +188,7 @@ export class MenuComponent extends EditableComponent {
             this.MenuItemClick(e, item)
           )
             .I.ClassName(item.Icon)
-            .End.Span.IText(item.Label)
+            .End.Span.IText(item.Label, this.EditForm.Meta.Label)
             .End.Render();
           Html.Instance.EndOf(ElementType.a);
           if (check) {

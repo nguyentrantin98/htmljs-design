@@ -3318,7 +3318,7 @@ button.btn {
     z-index: auto !important;
     padding: 2px 8px 2px 8px;
     text-align: left;
-    vertical-align: top;
+    vertical-align: middle;
     height: 55px;
 }
 
