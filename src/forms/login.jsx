@@ -1,6 +1,6 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { Client, Html, EditForm } from "htmljs-code";
+import { Client, Html, EditForm } from "../../lib";
 import { KeyCodeEnum, RoleEnum } from "../../lib/models/enum.js";
 import { Toast } from "../../lib/toast.js";
 import { MenuComponent } from "../components/menu.js";

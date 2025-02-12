@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import DropdownComponent from './DropdownComponent';
-import { Client } from 'htmljs-code';
-import { Toast } from '../../lib/toast';
+import { Client } from '../../lib';
 import { fetchData, addData, updateData } from '../redux/genericSlice'; // Update to use the Redux Toolkit slice
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';

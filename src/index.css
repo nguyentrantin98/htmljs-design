@@ -28,7 +28,8 @@ li {
     --bg-border: #0b98a7;
     --slide-bar-background-color: #021517;
     --slide-bar--active-border-color: #00bed1;
-    --primary-btn-background-color: #0b98a7
+    --primary-btn-background-color: #0b98a7;
+    --ss-main-height: 26px;
 }
 
 * {
@@ -1482,7 +1483,7 @@ div {
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 4.7rem);
+    height: calc(100vh - 5.7rem);
     background-color: rgba(0, 0, 0, .5);
     justify-content: center;
     z-index: 40;
@@ -1532,7 +1533,7 @@ div {
     box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
     width: 90%;
     padding: 9px 11px 0px 11px;
-    max-height: calc(100vh - 5.4rem);
+    max-height: calc(100vh - 6.4rem);
     position: relative;
     margin-top: .2rem;
     padding-bottom: 6rem;
@@ -2451,7 +2452,8 @@ button.btn {
 
 .grid-wrapper .table-wrapper .search-entry,
 .grid-wrapper .ms-upload .ms-input-upload table td {
-    padding: 0
+    padding: 0;
+    border: 0;
 }
 
 .grid-wrapper .table-wrapper .search-entry,
@@ -4260,4 +4262,31 @@ table.table {
 .popup-content.form-dialog {
     min-height: calc(100vh - 5.4rem);
     width: 90%;
+}
+
+.ss-main {
+    border: 1px solid #ced4da;
+    background-color: unset;
+    padding: 0;
+}
+
+.ss-main.ss-disabled{
+    background-color: unset;
+}
+
+.ss-main:focus {
+    box-shadow: none;
+}
+
+.ss-option span:first-child{
+    display: flex;
+    align-items: center;
+}
+
+.ss-content.ss-open-below{
+    min-width: 120px !important;
+}
+
+.grid-wrapper .search-entry .ss-main {
+    border: 0;
 }

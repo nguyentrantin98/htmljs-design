@@ -21,7 +21,8 @@ import store from "./redux/store.js";
 import { Provider } from 'react-redux';
 import UserActive from "./components/UserActive.jsx";
 import ChatBot from "./components/ChatBot.jsx";
-import './index.css'
+import './slimselect.css';
+import './index.css';
 
 export class App {
   /** @type {Page} */
