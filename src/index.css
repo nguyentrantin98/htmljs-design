@@ -4280,6 +4280,7 @@ table.table {
 
 .ss-option span:first-child{
     display: flex;
+    width: 100%;
     align-items: center;
 }
 
@@ -4289,4 +4290,16 @@ table.table {
 
 .grid-wrapper .search-entry .ss-main {
     border: 0;
+}
+
+.ss-main .ss-values .ss-single {
+    width: 100%;
+    margin-left: 0;
+}
+
+.ss-main .ss-values .ss-single span{
+    max-height:26px;
+    display: flex !important;
+    align-items:center !important;
+    width: 100%;
 }
