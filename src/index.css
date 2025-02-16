@@ -2647,7 +2647,6 @@ button.btn {
     vertical-align: middle;
     font-size: .8rem;
     outline: 0;
-    position: relative;
 }
 
 .grid-wrapper .table-wrapper td .button-copy {
@@ -4329,4 +4328,8 @@ table.table {
     align-items: center !important;
     width: 100%;
     border-radius: 10px !important;
+}
+
+.cell-abs input{
+    font-weight: 600 !important;
 }

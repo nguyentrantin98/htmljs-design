@@ -2,6 +2,7 @@ import React from 'react';
 import DropdownComponent from './DropdownComponent';
 import { ChromeTabs, Client, TabEditor } from '../../lib';
 import { LoginBL } from '../forms/login';
+import { ProfileBL } from '../forms/profile';
 
 const UserDropdown = ({ editForm }) => {
   const handleLogout = (event) => {
@@ -33,7 +34,7 @@ const UserDropdown = ({ editForm }) => {
   const dropdownContent = (
     <>
       <a className="dropdown-item" onClick={() => {
-        editForm.OpenTab('user-profile', {});
+        ProfileBL.Instance.Render();
       }}>
         <i className="fal fa-user mr-1"></i> Profile
       </a>
