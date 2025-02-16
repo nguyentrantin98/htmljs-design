@@ -2203,7 +2203,7 @@ button.btn {
     display: flex;
     flex-flow: row wrap;
     padding: 2px 0 2px 5px;
-    gap: 1rem
+    gap: .3rem;
 }
 
 .grid-wrapper .button-toolbar .btn-sub {
@@ -2274,15 +2274,20 @@ button.btn {
     border-bottom-right-radius: 6px;
     white-space: pre;
     height: 3rem;
-    align-items: center
+    align-items: center;
+    justify-content: end;
 }
 
 .grid-wrapper .paging input {
-    width: 26px !important;
+    width: 39px !important;
     text-align: center;
     padding: 0;
     box-shadow: none;
-    min-width: 26px !important
+    min-width: 39px !important;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    height: 26px;
 }
 
 .grid-wrapper .paging .border0 {
@@ -2504,6 +2509,7 @@ button.btn {
     text-overflow: ellipsis;
     width: 100%;
     padding-left: .4rem;
+    padding-right: .4rem;
     display: flex;
 }
 
@@ -2744,6 +2750,18 @@ button.btn {
 .result-wrapper .grid-wrapper .table-wrapper thead th {
     background: var(--bg-nav);
     height: 28px
+}
+
+.result-wrapper .grid-wrapper .table-wrapper thead th a {
+    visibility: hidden;
+}
+
+.grid-wrapper .table-wrapper thead th a {
+    visibility: hidden;
+}
+
+.grid-wrapper .table-wrapper thead th:hover a {
+    visibility: unset;
 }
 
 .result-wrapper .button-toolbar {
