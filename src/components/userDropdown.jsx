@@ -1,8 +1,8 @@
-import React from 'react';
-import DropdownComponent from './DropdownComponent';
-import { ChromeTabs, Client, TabEditor } from '../../lib';
-import { LoginBL } from '../forms/login';
-import { ProfileBL } from '../forms/profile';
+import React from "react";
+import DropdownComponent from "./DropdownComponent";
+import { ChromeTabs, Client, TabEditor } from "../../lib";
+import { LoginBL } from "../forms/login";
+import { ProfileBL } from "../forms/profile";
 
 const UserDropdown = ({ editForm }) => {
   const handleLogout = (event) => {
@@ -12,9 +12,9 @@ const UserDropdown = ({ editForm }) => {
   const deleteMethod = () => {
     Client.Token = null;
     localStorage.removeItem("UserInfo");
-    ChromeTabs.tabs.forEach(x => x.content.Dispose());
+    ChromeTabs.tabs.forEach((x) => x.content.Dispose());
     LoginBL.Instance.Render();
-  }
+  };
 
   const toggleContent = (
     <>
@@ -33,9 +33,19 @@ const UserDropdown = ({ editForm }) => {
 
   const dropdownContent = (
     <>
-      <a className="dropdown-item" onClick={() => {
-        ProfileBL.Instance.Render();
-      }}>
+      <a
+        className="dropdown-item"
+        onClick={() => {
+          var check = ChromeTabs.tabs.find(
+            (x) => x.content instanceof ProfileBL
+          );
+          if (check) {
+            check.content.Focus();
+            return;
+          }
+          ProfileBL.Instance.Render();
+        }}
+      >
         <i className="fal fa-user mr-1"></i> Profile
       </a>
       <a className="dropdown-item">

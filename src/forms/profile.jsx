@@ -1,7 +1,7 @@
 import "./profile.css";
 import React from "react";
 import { ToastContainer } from "react-toastify";
-import { Client, Html, EditForm } from "../../lib/index.js";
+import { Client, Html, EditForm, ChromeTabs } from "../../lib/index.js";
 
 export class ProfileBL extends EditForm {
   constructor() {
@@ -20,12 +20,13 @@ export class ProfileBL extends EditForm {
       Id: "Profile",
     };
     this.Title = "Profile";
+    this.IsRender = true;
     this.TabTitle = "Profile";
     this.Meta.Label = "Login";
     this.Meta.Layout = () => {
       const changePass = (e) => {
         e.preventDefault();
-        Client.Instance.PostAsync({},"")
+        Client.Instance.PostAsync({}, "");
       };
       return (
         <>
@@ -126,8 +127,7 @@ export class ProfileBL extends EditForm {
   }
 
   Render() {
-    Html.Take("#tab-content");
-    this.Element = Html.Context;
+    Html.Take("#tab-content").Div.TabIndex(-1).ClassName("tab-item");
     super.Render();
   }
 
@@ -135,5 +135,21 @@ export class ProfileBL extends EditForm {
   static get Instance() {
     this._instance = new ProfileBL();
     return this._instance;
+  }
+
+  Dispose() {
+    this.Element.parentElement.innerHTML = "";
+  }
+
+  Toggle(value) {
+    if (!this.Element) {
+      return;
+    }
+    this._show = value;
+    if (!this._show) {
+      this.Element.parentElement.style.display = "none";
+    } else {
+      this.Element.parentElement.style.display = "";
+    }
   }
 }
