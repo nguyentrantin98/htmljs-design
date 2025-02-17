@@ -234,7 +234,6 @@ export class App {
   }
 
   async Init() {
-    Spinner.Init();
     var data = await fetch(Client.api + "/api/dictionary");
     var rs = await data.json();
     try {
@@ -269,6 +268,7 @@ export class App {
     }
     LangSelect._dictionaries = map;
     localStorage.setItem(LangSelect.Culture, JSON.stringify(map));
+    Spinner.Init();
     if (Client.Token) {
       Client.GetToken(Client.Token).then((token) => {
         Client.Token = token;
@@ -276,6 +276,7 @@ export class App {
       }).catch(() => {
         this.removeUser();
       });
+
     }
     else {
       LoginBL.Instance.Render();
