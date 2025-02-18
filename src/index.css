@@ -2648,6 +2648,7 @@ button.btn {
     vertical-align: middle;
     font-size: .8rem;
     outline: 0;
+    position: relative;
 }
 
 .grid-wrapper .table-wrapper td .button-copy {
@@ -2706,6 +2707,7 @@ button.btn {
 
 .grid-wrapper .table-wrapper .group-row td {
     background-color: #d7edef;
+    position: static;
 }
 
 .grid-wrapper .table-wrapper td button {
