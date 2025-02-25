@@ -59,6 +59,21 @@ export class MenuComponent extends EditableComponent {
         IsRawString: true,
         Method: "GET",
       }).then((features) => {
+        Html.Take(".search-content").Input.Type("search").Event(EventType.Input, (e) => {
+          if (e.target.value) {
+            var newFeatures = JSON.parse(JSON.stringify(features.filter((x) => !x.InverseParent && x.Label.toLowerCase().includes(e.target.value.toLowerCase()))));
+            newFeatures.forEach((x) => {
+              x.ParentId = null;
+              x.InverseParent = null;
+            });
+            this.BuildFeatureTree(newFeatures);
+            this.RenderMenu(this.Features);
+          }
+          else {
+            this.BuildFeatureTree(features);
+            this.RenderMenu(this.Features);
+          }
+        }).ClassName("form-control").PlaceHolder("Search...").End.Render();
         this.BuildFeatureTree(features);
         this.RenderMenu(this.Features);
       });
@@ -102,6 +117,7 @@ export class MenuComponent extends EditableComponent {
    */
   RenderMenu(features) {
     Html.Take(".sidebar-content");
+    Html.Instance.Clear();
     /**
      * @param {Feature[]} features
      */

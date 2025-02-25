@@ -4336,3 +4336,24 @@ table.table {
 .cell-abs input{
     font-weight: 600 !important;
 }
+
+.report-box {
+    color: white;
+    padding: 9px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+.shipment { background-color: #007bff; }  /* Màu xanh dương */
+.lead { background-color: #17a2b8; }     /* Màu xanh ngọc */
+.prospect { background-color: #28a745; } /* Màu xanh lá */
+.customers { background-color: #ffc107; } /* Màu vàng */
+.clock { background-color: #dc3545; }   /* Màu đỏ */
+.report-box .report-number {
+    font-size: 1.5rem;
+    margin: 0;
+}
+.report-box .report-title {
+    font-size: .8rem;
+    margin: 5px 0;
+}

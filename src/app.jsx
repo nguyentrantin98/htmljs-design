@@ -124,6 +124,7 @@ export class App {
               <i className="ti-close"></i>
             </div>
           </div>
+          <div className="search-content p-2"></div>
           <div className="sidebar-content" data-name="Menu">
           </div>
         </nav>
