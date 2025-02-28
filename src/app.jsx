@@ -150,8 +150,6 @@ export class App {
             </ul>
           </div>
         </div>
-        <footer>
-        </footer>
         <div className="overlay action-toggle">
         </div>
         <ToastContainer />
@@ -315,7 +313,7 @@ export class App {
     if (el != null) {
       ChromeTabs.init(el);
     }
-    Main.init()
+    Main.init();
     this.LoadByFromUrl();
     await this.getExchangeRate();
     var dataExt = await fetch(Client.api + "/api/exchangeRate");

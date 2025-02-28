@@ -40,7 +40,7 @@ export class ProfileBL extends EditForm {
 
           if (response) {
             Toast.Success("Password updated successfully.");
-            Client.Token = token;
+            Client.Token = null;
             LoginBL.Instance.Render();
           } else {
             Toast.Warning("Failed to update password.");
