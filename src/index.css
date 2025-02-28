@@ -4031,7 +4031,8 @@ table.table {
 }
 
 .container-login[bg='100'] {
-    background-image: url(/assets/images/login.webp);
+    background-image: url(/assets/images/loginapp.png);
+    background-size: contain;
 }
 
 .input-select {
