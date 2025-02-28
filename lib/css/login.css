@@ -75,13 +75,13 @@
 }
 
 .wrap-login {
-    width: 400px;
+    width: 336px;
     border-radius: 8px;
-    padding: 40px 48px 40px 48px;
-    min-height: 340px;
+    padding: 18px 34px;
+    min-height: 473px;
     background: #fff;
     position: relative;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, .12);
+    box-shadow: 0 12px 20px #0000001f;
 }
 
 .copy-right-text {
