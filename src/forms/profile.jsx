@@ -1,7 +1,8 @@
 import "./profile.css";
 import React from "react";
-import { ToastContainer } from "react-toastify";
-import { Client, Html, EditForm, ChromeTabs } from "../../lib/index.js";
+import { Client, Html, EditForm } from "../../lib/index.js";
+import { Toast } from "../../lib/toast.js";
+import { LoginBL } from "./login.jsx";
 
 export class ProfileBL extends EditForm {
   constructor() {
@@ -24,9 +25,29 @@ export class ProfileBL extends EditForm {
     this.TabTitle = "Profile";
     this.Meta.Label = "Login";
     this.Meta.Layout = () => {
-      const changePass = (e) => {
+      const changePass = async (e) => {
         e.preventDefault();
-        Client.Instance.PostAsync({}, "");
+
+        const formData = new FormData(e.target);
+        const password = formData.get("current-password");
+        const newPassword = formData.get("new-password");
+
+        try {
+          const response = await Client.Instance.PostAsync(
+            { Password: password, NewPassword: newPassword },
+            "/api/User/UpdatePassword"
+          );
+
+          if (response) {
+            Toast.Success("Password updated successfully.");
+            Client.Token = token;
+            LoginBL.Instance.Render();
+          } else {
+            Toast.Warning("Failed to update password.");
+          }
+        } catch (error) {
+          Toast.Success("An error occurred while updating the password.");
+        }
       };
       return (
         <>
@@ -95,31 +116,33 @@ export class ProfileBL extends EditForm {
             </form>
             <div className="change-password">
               <h3>Change Password</h3>
-              <form>
+              <form onSubmit={changePass}>
                 <div className="form-section">
                   <div className="form-group">
                     <label htmlFor="current-password">Current Password</label>
                     <input
                       type="password"
+                      name="current-password"
                       placeholder="Enter current password"
                     />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="new-password">New Password</label>
-                    <input type="password" placeholder="Enter new password" />
+                    <input
+                      type="password"
+                      name="new-password"
+                      placeholder="Enter new password"
+                    />
                   </div>
                 </div>
 
                 <div className="form-actions">
-                  <button type="submit" onClick={changePass}>
-                    Update Password
-                  </button>
+                  <button type="submit">Update Password</button>
                 </div>
               </form>
             </div>
           </div>
-          <ToastContainer />
         </>
       );
     };
@@ -127,7 +150,10 @@ export class ProfileBL extends EditForm {
   }
 
   Render() {
-    Html.Take("#tab-content").Div.TabIndex(-1).ClassName("tab-item");
+    Html.Take("#tab-content")
+      .Div.TabIndex(-1)
+      .ClassName("tab-item w-100")
+      .Style("width: 100%");
     super.Render();
   }
 

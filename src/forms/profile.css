@@ -104,3 +104,7 @@
       grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.w-100 div:first-child {
+  width: 100%;
+}

@@ -48,10 +48,7 @@ export class MenuComponent extends EditableComponent {
       params: Object.fromEntries(params.entries()), // Query parameters (e.g., { Id: '-00612540-0000-0000-8000-4782e9f44882' })
     };
   }
-  /**
-   * @type {Feature[]}
-   */
-  Features;
+
   Render() {
     new Promise(() => {
       Client.Instance.SubmitAsync({
@@ -59,9 +56,11 @@ export class MenuComponent extends EditableComponent {
         IsRawString: true,
         Method: "GET",
       }).then((features) => {
+        var cloneFeature = JSON.parse(JSON.stringify(features))
         Html.Take(".search-content").Input.Type("search").Event(EventType.Input, (e) => {
+          var actFeature = JSON.parse(JSON.stringify(features));
           if (e.target.value) {
-            var newFeatures = JSON.parse(JSON.stringify(features.filter((x) => !x.InverseParent && x.Label.toLowerCase().includes(e.target.value.toLowerCase()))));
+            var newFeatures = JSON.parse(JSON.stringify(actFeature.filter((x) => !x.InverseParent && x.Label.toLowerCase().includes(e.target.value.trim().toLowerCase()))));
             newFeatures.forEach((x) => {
               x.ParentId = null;
               x.InverseParent = null;
@@ -70,11 +69,11 @@ export class MenuComponent extends EditableComponent {
             this.RenderMenu(this.Features);
           }
           else {
-            this.BuildFeatureTree(features);
+            this.BuildFeatureTree(actFeature);
             this.RenderMenu(this.Features);
           }
         }).ClassName("form-control").PlaceHolder("Search...").End.Render();
-        this.BuildFeatureTree(features);
+        this.BuildFeatureTree(cloneFeature);
         this.RenderMenu(this.Features);
       });
     });
