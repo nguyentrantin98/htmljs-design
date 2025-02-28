@@ -156,14 +156,6 @@ export class App {
         <ChatBot />
       </Provider>
     );
-    this.Meta.Components = [
-      {
-        ComponentType: () => {
-          return new MenuComponent();
-        },
-        FieldName: "Menu",
-      }
-    ];
     this.MyApp = new Page();
     this.MyApp.EditForm = new EditForm("MyApp");
     this.MyApp.EditForm.Policies = [

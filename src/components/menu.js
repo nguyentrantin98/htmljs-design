@@ -23,6 +23,11 @@ export class MenuComponent extends EditableComponent {
       this.CurrentHref = this.GetFeatureNameFromUrl().pathname;
     }
   }
+  /** @type {MenuComponent} */
+  static get Instance() {
+    this._instance = new MenuComponent();
+    return this._instance;
+  }
   /**
    * @returns {string | null}
    */
@@ -154,9 +159,8 @@ export class MenuComponent extends EditableComponent {
           }
           Html.Instance.Event(EventType.Click, (e) =>
             this.MenuItemClick(e, item)
-          )
-            .I.ClassName(item.Icon)
-            .End.Span.IText(item.Label, this.EditForm.Meta.Label)
+          ).I.ClassName(item.Icon)
+            .End.Span.IText(item.Label, "Menu")
             .End.Render();
           Html.Instance.EndOf(ElementType.a);
           if (check) {
@@ -203,7 +207,7 @@ export class MenuComponent extends EditableComponent {
             this.MenuItemClick(e, item)
           )
             .I.ClassName(item.Icon)
-            .End.Span.IText(item.Label, this.EditForm.Meta.Label)
+            .End.Span.IText(item.Label, "Menu")
             .End.Render();
           Html.Instance.EndOf(ElementType.a);
           if (check) {

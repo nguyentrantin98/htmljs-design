@@ -33,110 +33,135 @@ export class LoginBL extends EditForm {
     this.Meta.IsPublic = true;
     this.Meta.Label = "Login";
     this.Title = "Login";
-    this.Meta.Layout = () => (
-      <>
-        <div className="container-login" view="login" bg={100}>
-          <div className="wrap-login" type="login">
-            <div className="login-form validate-form">
-              <span className="login-form-logo1" />
-              <span
-                objname="jTitle"
-                className="login-form-title"
-              >
-                LOGISTICS LOGIN
-              </span>
-              <div className="login-form-inputs login-class" objname="jInputs">
-                <div className="wrap-input username-wrap validate-input">
-                  <label>Company name</label>
-                  <input
-                    className="input ap-lg-input"
-                    type="text"
-                    data-name="TanentCode"
-                  />
-                </div>
-                <div className="wrap-input username-wrap validate-input">
-                  <label>User name</label>
-                  <input
-                    className="input ap-lg-input"
-                    type="text"
-                    data-name="UserName"
-                  />
-                </div>
-                <div className="wrap-input pass-wrap validate-input">
-                  <label>Password</label>
-                  <input
-                    className="input ap-lg-input"
-                    data-name="Password"
-                    type="password"
-                  />
-                </div>
-                <div className="text-right" style={{ display: "flex" }}>
-                  <a
-                    objname="jForgot"
-                    className="forgot-password"
-                    target="_blank"
-                    res-key="FormLogin_ForgotPassword"
-                  >
-                    Forgot password?
-                  </a>
-                  <div style={{ flex: 1 }} />
-                </div>
-              </div>
-              <div className="container-login-form-btn login-class">
-                <button data-name="btnLogin" className="login-form-btn">
-                  Login
-                </button>
-              </div>
-              <div className="register-block login-class">
-                <span res-key="FormLogin_DontHaveAccount">
-                  Dont have account?
+    this.Meta.Layout = () => {
+      const logIn = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const tanentCode = formData.get("TanentCode");
+        const userName = formData.get("UserName");
+        const password = formData.get("Password");
+        const login = {
+          TanentCode: tanentCode,
+          UserName: userName,
+          Password: password,
+          AutoSignIn: true,
+        };
+        const tcs = new Promise((resolve, reject) => {
+          // @ts-ignore
+          Client.Instance.SubmitAsync({
+            Url: `/api/auth/login`,
+            JsonData: JSON.stringify(login),
+            IsRawString: true,
+            Method: "POST",
+            AllowAnonymous: true,
+          })
+            .then((res) => {
+              if (!res) {
+                resolve(false);
+                return;
+              }
+              Client.Token = res;
+              this.InitFCM();
+              if (this.SignedInHandler) {
+                this.SignedInHandler(Client.Token);
+              }
+              resolve(true);
+              this.Dispose();
+              window.history.pushState(null, "Home", "");
+              App.Instance.RenderLayout()
+                .then(() => {
+                  this.InitAppIfEmpty();
+                })
+                .finally(() => {
+                  window.setTimeout(() => {
+                    Toast.Success(`Hello ` + Client.Token.FullName);
+                  }, 200);
+                });
+            })
+            .catch(() => {
+              resolve(false);
+              Toast.Warning("Invalid username or password");
+            });
+        });
+      };
+      return (
+        <>
+          <div className="container-login" view="login" bg={100}>
+            <div className="wrap-login" type="login">
+              <div className="login-form validate-form">
+                <span className="login-form-logo1" />
+                <span objname="jTitle" className="login-form-title">
+                  LOGISTICS LOGIN
                 </span>
-                <a
-                  objname="jRegister"
-                  className="register-btn"
-                  target="_blank"
-                  res-key="FormLogin_Register"
-                  onClick={() => this.Register()}
+                <form
+                  className="login-form-inputs login-class"
+                  objname="jInputs"
+                  onSubmit={logIn}
                 >
-                  Register
-                </a>
+                  <div className="wrap-input username-wrap validate-input">
+                    <label>Company name</label>
+                    <input
+                      className="input ap-lg-input"
+                      type="text"
+                      name="TanentCode"
+                    />
+                  </div>
+                  <div className="wrap-input username-wrap validate-input">
+                    <label>User name</label>
+                    <input
+                      className="input ap-lg-input"
+                      type="text"
+                      name="UserName"
+                    />
+                  </div>
+                  <div className="wrap-input pass-wrap validate-input">
+                    <label>Password</label>
+                    <input
+                      className="input ap-lg-input"
+                      name="Password"
+                      type="password"
+                    />
+                  </div>
+                  <div className="text-right" style={{ display: "flex" }}>
+                    <a
+                      objname="jForgot"
+                      className="forgot-password"
+                      target="_blank"
+                      res-key="FormLogin_ForgotPassword"
+                    >
+                      Forgot password?
+                    </a>
+                    <div style={{ flex: 1 }} />
+                  </div>
+                  <div className="container-login-form-btn login-class">
+                    <button type="submit" className="login-form-btn">
+                      Login
+                    </button>
+                  </div>
+                  <div className="register-block login-class">
+                    <span res-key="FormLogin_DontHaveAccount">
+                      Dont have account?
+                    </span>
+                    <a
+                      objname="jRegister"
+                      className="register-btn"
+                      target="_blank"
+                      res-key="FormLogin_Register"
+                    >
+                      Register
+                    </a>
+                  </div>
+                </form>
               </div>
-            </div>
-            <div objname="jCopyRight" className="text-center copy-right-text">
-              Copyright © 2024
+              <div objname="jCopyRight" className="text-center copy-right-text">
+                Copyright © 2024
+              </div>
             </div>
           </div>
-        </div >
-        <ToastContainer />
-      </>
-    );
-    this.Meta.Components = [
-      {
-        ComponentType: "Button",
-        FieldName: "btnLogin",
-        OnClick: async () => {
-          await this.Login();
-        },
-      },
-      {
-        ComponentType: "Input",
-        FieldName: "UserName",
-        Label: "User Name",
-        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
-      },
-      {
-        ComponentType: "Input",
-        FieldName: "TanentCode",
-        Label: "Tanent Code",
-        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
-      },
-      {
-        ComponentType: "Password",
-        Label: "Password",
-        FieldName: "Password",
-        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
-      }
-    ];
+          <ToastContainer />
+        </>
+      );
+    };
   }
 
   /** @type {LoginBL} */
@@ -193,6 +218,7 @@ export class LoginBL extends EditForm {
   }
 
   async Login() {
+    debugger;
     let isValid = await this.IsFormValid();
     if (!isValid) {
       return false;
@@ -214,32 +240,34 @@ export class LoginBL extends EditForm {
         IsRawString: true,
         Method: "POST",
         AllowAnonymous: true,
-      }).then((res) => {
-        if (!res) {
+      })
+        .then((res) => {
+          if (!res) {
+            resolve(false);
+            return;
+          }
+          Client.Token = res;
+          this.InitFCM();
+          if (this.SignedInHandler) {
+            this.SignedInHandler(Client.Token);
+          }
+          resolve(true);
+          this.Dispose();
+          window.history.pushState(null, "Home", "");
+          App.Instance.RenderLayout()
+            .then(() => {
+              this.InitAppIfEmpty();
+            })
+            .finally(() => {
+              window.setTimeout(() => {
+                Toast.Success(`Hello ` + Client.Token.FullName);
+              }, 200);
+            });
+        })
+        .catch(() => {
           resolve(false);
-          return;
-        }
-        Client.Token = res;
-        this.InitFCM();
-        if (this.SignedInHandler) {
-          this.SignedInHandler(Client.Token);
-        }
-        resolve(true);
-        this.Dispose();
-        window.history.pushState(null, "Home", "");
-        App.Instance.RenderLayout()
-          .then(() => {
-            this.InitAppIfEmpty();
-          })
-          .finally(() => {
-            window.setTimeout(() => {
-              Toast.Success(`Hello ` + Client.Token.FullName);
-            }, 200);
-          });
-      }).catch(() => {
-        resolve(false);
-        Toast.Warning("Invalid username or password");
-      });
+          Toast.Warning("Invalid username or password");
+        });
     });
     return tcs;
   }
@@ -272,11 +300,14 @@ export class LoginBL extends EditForm {
     }
     this._initApp = true;
     this.InitAppHanlder?.(Client.Token);
-    EditForm.NotificationClient = new WebSocketClient("api.nguyenduyphong.id.vn/task");
+    MenuComponent.Instance.Render();
+    EditForm.NotificationClient = new WebSocketClient(
+      "api.nguyenduyphong.id.vn/task"
+    );
   }
 
   ToastOki() {
-    Toast.Success("OKi")
+    Toast.Success("OKi");
   }
 
   InitFCM(signout = false) {
