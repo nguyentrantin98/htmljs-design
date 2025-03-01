@@ -191,6 +191,11 @@ html {
     width: 56px
 }
 
+
+.collapse-sidebar .text {
+    visibility: hidden;
+}
+
 .checkbox input,
 .chrome-tabs .chrome-tab[is-mini] .chrome-tab-title,
 .chrome-tabs .chrome-tab[is-mini]:not([active]) .chrome-tab-close,
@@ -249,9 +254,10 @@ html {
     position: relative
 }
 
-.sidebar-content ul {
+.sidebar-content ul:first-child {
     width: 100%;
-    overflow: auto
+    overflow: overlay;
+    height: calc(100vh - 8rem);
 }
 
 .sidebar-content ul>li a {
@@ -1406,13 +1412,12 @@ div {
 .tab-item {
     position: relative;
     width: 100%;
-    display: flex;
     min-height: calc(100vh - calc(2.5rem));
     align-items: flex-start
 }
 
 .scroll-content {
-    max-height: calc(100vh - 2.4rem) !important;
+    max-height: calc(100vh - 5.4rem) !important;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -4357,4 +4362,11 @@ table.table {
 .report-box .report-title {
     font-size: .8rem;
     margin: 5px 0;
+}
+
+.form-dialog .scroll-content{
+    max-height: calc(100vh - 15rem) !important;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 30rem;
 }

@@ -2,7 +2,6 @@ import React from "react";
 import DropdownComponent from "./DropdownComponent";
 import { ChromeTabs, Client, TabEditor } from "../../lib";
 import { LoginBL } from "../forms/login";
-import { ProfileBL } from "../forms/profile";
 
 const UserDropdown = ({ editForm }) => {
   const handleLogout = (event) => {
@@ -33,24 +32,6 @@ const UserDropdown = ({ editForm }) => {
 
   const dropdownContent = (
     <>
-      <a
-        className="dropdown-item"
-        onClick={() => {
-          var check = ChromeTabs.tabs.find(
-            (x) => x.content instanceof ProfileBL
-          );
-          if (check) {
-            check.content.Focus();
-            return;
-          }
-          ProfileBL.Instance.Render();
-        }}
-      >
-        <i className="fal fa-user mr-1"></i> Profile
-      </a>
-      <a className="dropdown-item">
-        <i className="fal fa-cog mr-1"></i> Setting
-      </a>
       <a onClick={handleLogout} className="dropdown-item">
         <i className="fal fa-sign-out mr-1"></i> Logout
       </a>

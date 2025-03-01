@@ -1,10 +1,11 @@
 import "./profile.css";
 import React from "react";
-import { Client, Html, EditForm } from "../../lib/index.js";
+import { Client, Page } from "../../lib/index.js";
+import { ToastContainer } from "react-toastify";
 import { Toast } from "../../lib/toast.js";
 import { LoginBL } from "./login.jsx";
 
-export class ProfileBL extends EditForm {
+export class ProfileBL extends Page {
   constructor() {
     super("User");
     this.Entity = {
@@ -27,7 +28,6 @@ export class ProfileBL extends EditForm {
     this.Meta.Layout = () => {
       const changePass = async (e) => {
         e.preventDefault();
-
         const formData = new FormData(e.target);
         const password = formData.get("current-password");
         const newPassword = formData.get("new-password");
@@ -143,28 +143,17 @@ export class ProfileBL extends EditForm {
               </form>
             </div>
           </div>
+          <ToastContainer />
         </>
       );
     };
     this.Meta.Components = [];
   }
 
-  Render() {
-    Html.Take("#tab-content")
-      .Div.TabIndex(-1)
-      .ClassName("tab-item w-100")
-      .Style("width: 100%");
-    super.Render();
-  }
-
   /** @type {ProfileBL} */
   static get Instance() {
     this._instance = new ProfileBL();
     return this._instance;
-  }
-
-  Dispose() {
-    this.Element.parentElement.innerHTML = "";
   }
 
   Toggle(value) {

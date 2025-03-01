@@ -9,20 +9,12 @@ import {
   LangSelect,
   Client,
   EditableComponent,
-  TabEditor,
-} from "../lib";
+} from "../lib/index.js";
 import { Spinner } from "../lib/spinner.js";
-import { MenuComponent } from "./components/menu";
 import { LoginBL } from "./forms/login.jsx";
-import UserDropdown from "./components/userDropdown.jsx";
-import NotificationDropdown from "./components/NotificationDropdown.jsx";
-import LangComponent from "./components/LangComponent.jsx";
-import store from "./redux/store.js";
-import { Provider } from 'react-redux';
-import UserActive from "./components/UserActive.jsx";
-import ChatBot from "./components/ChatBot.jsx";
-import './slimselect.css';
-import './index.css';
+import "./slimselect.css";
+import "./index.css";
+import AppComponent from "./AppComponent.jsx";
 
 export class App {
   /** @type {Page} */
@@ -41,121 +33,9 @@ export class App {
   constructor() {
     this.Meta = new Feature();
     this.Meta.ParentElement = document.getElementById("app");
-    this.Meta.Layout = () => (
-      <Provider store={store}>
-        <div className="shadow-header"></div>
-        <header className="header-navbar fixed">
-          <div className="header-wrapper">
-            <div className="header-left">
-              <div className="sidebar-toggle action-toggle"><i className="fal fa-bars"></i></div>
-            </div>
-            <div className="chrome-tabs">
-              <div className="chrome-tabs-content">
-              </div>
-            </div>
-            <div className="header-content">
-              <div className="theme-switch-icon"></div>
-              <LangComponent />
-              <UserActive />
-              <div className="notification dropdown">
-                <a data-bs-toggle="dropdown" aria-expanded="false" onClick={async () => {
-                  var tab = ChromeTabs.tabs.find(x => x.content.Show);
-                  if (tab) {
-                    var popupDetail = tab.content.Children.find(x => x.Popup);
-                    if (popupDetail) {
-                      var popup2Detail = popupDetail.Children.find(x => x.Popup);
-                      if (popup2Detail) {
-                        var form = {
-                          Id: this.MyApp.EditForm.Uuid7.NewGuid(),
-                          RecordId: popup2Detail.Entity.Id,
-                          FormatChat: popup2Detail.Entity.FormatChat,
-                          Icon: popup2Detail.Entity.Icon,
-                          EntityId: popup2Detail.Meta.EntityId
-                        };
-                        var createConvert = await Client.Instance.PostAsync(form, "/api/Conversation");
-                        var tab1 = ChromeTabs.tabs.find(x => x.content.Meta.Name == "chat-editor");
-                        if (tab1) {
-                          tab1.content.Dispose();
-                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
-                        }
-                        else {
-                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
-                        }
-                      }
-                      else {
-                        var form = {
-                          Id: this.MyApp.EditForm.Uuid7.NewGuid(),
-                          RecordId: popupDetail.Entity.Id,
-                          FormatChat: popupDetail.Entity.FormatChat,
-                          Icon: popupDetail.Entity.Icon,
-                          EntityId: popupDetail.Meta.EntityId
-                        };
-                        var createConvert = await Client.Instance.PostAsync(form, "/api/Conversation");
-                        var tab1 = ChromeTabs.tabs.find(x => x.content.Meta.Name == "chat-editor");
-                        if (tab1) {
-                          tab1.content.Dispose();
-                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
-                        }
-                        else {
-                          this.MyApp.EditForm.OpenTab('chat-editor', createConvert);
-                        }
-                      }
-                    }
-                    else {
-                      this.updateView();
-                    }
-                  }
-                  else {
-                    this.updateView();
-                  }
-                }}>
-                  <i className="far fa-envelope"></i>
-                </a>
-              </div>
-              <NotificationDropdown />
-              <UserDropdown editForm={this.MyApp.EditForm} />
-            </div>
-          </div>
-        </header>
-        <nav className="main-sidebar ps-menu">
-          <div className="sidebar-header">
-            <a className="text"><img src={Client.Token.Vendor.Logo} /></a>
-            <div className="close-sidebar action-toggle">
-              <i className="ti-close"></i>
-            </div>
-          </div>
-          <div className="search-content p-2"></div>
-          <div className="sidebar-content" data-name="Menu">
-          </div>
-        </nav>
-        <div className="main-content" id="tab-content">
-        </div>
-        <div className="settings">
-          <div className="settings-icon-wrapper">
-            <div className="settings-icon">
-              <i className="ti ti-settings"></i>
-            </div>
-          </div>
-          <div className="settings-content">
-            <ul>
-              <li className="fix-header">
-                <div className="fix-header-wrapper">
-                  <div className="form-check form-switch lg">
-                    <a href="https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx" target="_blank">Vietcombank Exchange</a>
-                  </div>
-                </div>
-              </li>
-            </ul>
-            <ul className="exchange-rate">
-            </ul>
-          </div>
-        </div>
-        <div className="overlay action-toggle">
-        </div>
-        <ToastContainer />
-        <ChatBot />
-      </Provider>
-    );
+    this.Meta.Layout = () => {
+      return <AppComponent editForm={this.MyApp.EditForm} />;
+    };
     this.MyApp = new Page();
     this.MyApp.EditForm = new EditForm("MyApp");
     this.MyApp.EditForm.Policies = [
@@ -168,10 +48,10 @@ export class App {
   }
 
   updateView() {
-    this.MyApp.EditForm.OpenTab('chat-editor', {});
+    this.MyApp.EditForm.OpenTab("chat-editor", {});
     window.setTimeout(() => {
-      var tab = ChromeTabs.tabs.find(x => x.content.Show);
-      var chat = tab.content.ChildCom.find(x => x.ComponentType == "Chat");
+      var tab = ChromeTabs.tabs.find((x) => x.content.Show);
+      var chat = tab.content.ChildCom.find((x) => x.ComponentType == "Chat");
       if (chat) {
         chat.UpdateView();
       }
@@ -179,7 +59,9 @@ export class App {
   }
 
   async getExchangeRate() {
-    var rate = await fetch("https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx");
+    var rate = await fetch(
+      "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"
+    );
     const xmlString = await rate.text();
     const parser = new DOMParser();
     const xmlDoc = parser.parseFromString(xmlString, "text/xml");
@@ -189,29 +71,34 @@ export class App {
       CurrencyName: "VND",
       Buy: "1",
       Transfer: "1",
-      Sell: "1"
+      Sell: "1",
     });
     var element = document.querySelector(".exchange-rate");
-    element.innerHTML = '';
+    element.innerHTML = "";
     const ext = json.reduce((acc, cur) => {
       var li = document.createElement("li");
       li.textContent = cur.CurrencyCode + " : " + cur.Transfer;
       element.appendChild(li);
-      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.Transfer.replace(/,/g, ''));
+      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(
+        cur.Transfer.replace(/,/g, "")
+      );
       return acc;
     }, {});
-    var usd = this.MyApp.EditForm.Decimal(json.find(x => x.CurrencyCode == "USD").Transfer.replace(/,/g, ''));
+    var usd = this.MyApp.EditForm.Decimal(
+      json.find((x) => x.CurrencyCode == "USD").Transfer.replace(/,/g, "")
+    );
     const ext1 = json.reduce((acc, cur) => {
-      const eurToUsdRate = (this.MyApp.EditForm.Decimal(1)).div(this.MyApp.EditForm.Decimal(cur.Transfer.replace(/,/g, ''))); // Tỷ giá EUR => USD
+      const eurToUsdRate = this.MyApp.EditForm.Decimal(1).div(
+        this.MyApp.EditForm.Decimal(cur.Transfer.replace(/,/g, ""))
+      ); // Tỷ giá EUR => USD
       if (cur.CurrencyCode == "VND") {
         const multipliedRate = eurToUsdRate.mul(usd);
-        acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(1).div(multipliedRate);
-      }
-      else {
+        acc[cur.CurrencyCode] =
+          this.MyApp.EditForm.Decimal(1).div(multipliedRate);
+      } else {
         if (cur.CurrencyCode == "USD") {
           acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(1);
-        }
-        else {
+        } else {
           const multipliedRate = eurToUsdRate.mul(usd);
           acc[cur.CurrencyCode] = multipliedRate;
         }
@@ -246,14 +133,15 @@ export class App {
         return acc;
       }, {});
       localStorage.setItem("SalesFunction", JSON.stringify(mapSaleFunction));
-    } catch {
-    }
+    } catch {}
     localStorage.setItem("Dictionary", JSON.stringify(rs));
     const cul = localStorage.getItem("Culture") || "en";
-    const map = rs.filter(x => x.LangCode == cul).reduce((acc, cur) => {
-      acc[cur.Key] = cur.Value;
-      return acc;
-    }, {});
+    const map = rs
+      .filter((x) => x.LangCode == cul)
+      .reduce((acc, cur) => {
+        acc[cur.Key] = cur.Value;
+        return acc;
+      }, {});
     if (!LangSelect.Culture) {
       LangSelect.Culture = cul;
     }
@@ -261,15 +149,15 @@ export class App {
     localStorage.setItem(LangSelect.Culture, JSON.stringify(map));
     Spinner.Init();
     if (Client.Token) {
-      Client.GetToken(Client.Token).then((token) => {
-        Client.Token = token;
-        LoginBL.Instance.Render();
-      }).catch(() => {
-        this.removeUser();
-      });
-
-    }
-    else {
+      Client.GetToken(Client.Token)
+        .then((token) => {
+          Client.Token = token;
+          LoginBL.Instance.Render();
+        })
+        .catch(() => {
+          this.removeUser();
+        });
+    } else {
       LoginBL.Instance.Render();
     }
   }
@@ -285,7 +173,7 @@ export class App {
         CurrencyName: exrate.getAttribute("CurrencyName").trim(),
         Buy: exrate.getAttribute("Buy"),
         Transfer: exrate.getAttribute("Transfer"),
-        Sell: exrate.getAttribute("Sell")
+        Sell: exrate.getAttribute("Sell"),
       };
       exchangeRates.push(rate);
     }
@@ -305,7 +193,6 @@ export class App {
     if (el != null) {
       ChromeTabs.init(el);
     }
-    Main.init();
     this.LoadByFromUrl();
     await this.getExchangeRate();
     var dataExt = await fetch(Client.api + "/api/exchangeRate");
@@ -345,30 +232,32 @@ export class App {
     if (fName.pathname == "") {
       return;
     }
-    ComponentExt.InitFeatureByName(fName.pathname, true).then(tab => {
+    ComponentExt.InitFeatureByName(fName.pathname, true).then((tab) => {
       window.setTimeout(() => {
         if (fName.params.Id) {
-          Client.Instance.GetByIdAsync(tab.Meta.EntityId, [fName.params.Id]).then(data => {
+          Client.Instance.GetByIdAsync(tab.Meta.EntityId, [
+            fName.params.Id,
+          ]).then((data) => {
             if (data.data[0]) {
               tab.OpenPopup(fName.params.Popup, data.data[0]);
               window.setTimeout(() => {
                 if (fName.params.Popup2) {
-                  var popup = tab.Children.find(x => x.Popup);
+                  var popup = tab.Children.find((x) => x.Popup);
                   Client.Instance.SubmitAsync({
                     Url: `/api/feature/getFeature`,
                     Method: "POST",
                     JsonData: JSON.stringify({
-                      Name: fName.params.Popup2
-                    })
-                  }).then(item => {
-                    Client.Instance.GetByIdAsync(item.EntityId, [fName.params.Id2]).then(data2 => {
+                      Name: fName.params.Popup2,
+                    }),
+                  }).then((item) => {
+                    Client.Instance.GetByIdAsync(item.EntityId, [
+                      fName.params.Id2,
+                    ]).then((data2) => {
                       if (data2.data[0]) {
                         popup.OpenPopup(fName.params.Popup2, data2.data[0]);
                       }
                     });
-                  })
-
-
+                  });
                 }
               }, 500);
             }
@@ -381,7 +270,7 @@ export class App {
 
   /**
    * @returns {string | null}
-        */
+   */
   GetFeatureNameFromUrl() {
     let hash = window.location.hash; // Get the full hash (e.g., '#/chat-editor?Id=-00612540-0000-0000-8000-4782e9f44882')
 
@@ -400,8 +289,8 @@ export class App {
       pathname = segments[segments.length - 1] || segments[segments.length - 2];
     }
     return {
-      pathname: pathname || null,  // Pathname (e.g., 'chat-editor')
-      params: Object.fromEntries(params.entries()) // Query parameters (e.g., { Id: '-00612540-0000-0000-8000-4782e9f44882' })
+      pathname: pathname || null, // Pathname (e.g., 'chat-editor')
+      params: Object.fromEntries(params.entries()), // Query parameters (e.g., { Id: '-00612540-0000-0000-8000-4782e9f44882' })
     };
   }
 }

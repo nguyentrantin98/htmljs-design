@@ -41,7 +41,7 @@ export class RegisterBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="CompanyName"
+                    name="CompanyName"
                     placeholder="Company Name"
                   />
                 </div>
@@ -49,7 +49,7 @@ export class RegisterBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="TanentCode"
+                    name="TanentCode"
                     placeholder="Tanent Code"
                   />
                 </div>
@@ -57,7 +57,7 @@ export class RegisterBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="TaxCode"
+                    name="TaxCode"
                     placeholder="Tax code"
                   />
                 </div>
@@ -65,7 +65,7 @@ export class RegisterBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="Email"
+                    name="Email"
                     placeholder="Email"
                   />
                 </div>
@@ -73,7 +73,7 @@ export class RegisterBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="PhoneNumber"
+                    name="PhoneNumber"
                     placeholder="Phone Number"
                   />
                 </div>
@@ -81,21 +81,21 @@ export class RegisterBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="UserName"
+                    name="UserName"
                     placeholder="Số điện thoại/email"
                   />
                 </div>
                 <div className="wrap-input pass-wrap validate-input">
                   <input
                     className="input ap-lg-input"
-                    data-name="Password"
+                    name="Password"
                     placeholder="Mật khẩu"
                   />
                   <i objname="jBntShowPass" className="btn-show-pass" />
                 </div>
               </div>
               <div className="container-login-form-btn login-class">
-                <button data-name="btnRegister" className="login-form-btn">
+                <button name="btnRegister" className="login-form-btn">
                   Đăng ký
                 </button>
               </div>

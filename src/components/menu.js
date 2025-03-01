@@ -61,23 +61,37 @@ export class MenuComponent extends EditableComponent {
         IsRawString: true,
         Method: "GET",
       }).then((features) => {
-        var cloneFeature = JSON.parse(JSON.stringify(features))
-        Html.Take(".search-content").Input.Type("search").Event(EventType.Input, (e) => {
-          var actFeature = JSON.parse(JSON.stringify(features));
-          if (e.target.value) {
-            var newFeatures = JSON.parse(JSON.stringify(actFeature.filter((x) => !x.InverseParent && x.Label.toLowerCase().includes(e.target.value.trim().toLowerCase()))));
-            newFeatures.forEach((x) => {
-              x.ParentId = null;
-              x.InverseParent = null;
-            });
-            this.BuildFeatureTree(newFeatures);
-            this.RenderMenu(this.Features);
-          }
-          else {
-            this.BuildFeatureTree(actFeature);
-            this.RenderMenu(this.Features);
-          }
-        }).ClassName("form-control").PlaceHolder("Search...").End.Render();
+        var cloneFeature = JSON.parse(JSON.stringify(features));
+        Html.Take(".search-content")
+          .Input.Type("search")
+          .Event(EventType.Input, (e) => {
+            var actFeature = JSON.parse(JSON.stringify(features));
+            if (e.target.value) {
+              var newFeatures = JSON.parse(
+                JSON.stringify(
+                  actFeature.filter(
+                    (x) =>
+                      !x.InverseParent &&
+                      x.Label.toLowerCase().includes(
+                        e.target.value.trim().toLowerCase()
+                      )
+                  )
+                )
+              );
+              newFeatures.forEach((x) => {
+                x.ParentId = null;
+                x.InverseParent = null;
+              });
+              this.BuildFeatureTree(newFeatures);
+              this.RenderMenu(this.Features);
+            } else {
+              this.BuildFeatureTree(actFeature);
+              this.RenderMenu(this.Features);
+            }
+          })
+          .ClassName("form-control")
+          .PlaceHolder("Search...")
+          .End.Render();
         this.BuildFeatureTree(cloneFeature);
         this.RenderMenu(this.Features);
       });
@@ -136,7 +150,10 @@ export class MenuComponent extends EditableComponent {
           Html.Instance.Event(EventType.ContextMenu, (e) =>
             this.MenuItemContextMenu(e, item)
           );
-          Html.Instance.Span.IText(item.Label, this.EditForm.Meta.Label).End.End.Render();
+          Html.Instance.Span.IText(
+            item.Label,
+            "Menu"
+          ).End.End.Render();
         } else {
           var check = item.InverseParent && item.InverseParent.length > 0;
           Html.Instance.Li.Render();
@@ -159,7 +176,8 @@ export class MenuComponent extends EditableComponent {
           }
           Html.Instance.Event(EventType.Click, (e) =>
             this.MenuItemClick(e, item)
-          ).I.ClassName(item.Icon)
+          )
+            .I.ClassName(item.Icon)
             .End.Span.IText(item.Label, "Menu")
             .End.Render();
           Html.Instance.EndOf(ElementType.a);
