@@ -3999,6 +3999,7 @@ table.table {
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   display: flex;
+  height: calc(110vh - 13rem);
 }
 
 .discussions {
@@ -4036,13 +4037,13 @@ table.table {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #007bff;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-size: 20px;
   margin-right: 10px;
+  background-size: cover;
 }
 
 /* Nội dung cuộc trò chuyện */

@@ -100,7 +100,7 @@ const AppComponent = ({ editForm }) => {
                           Id: editForm.Uuid7.NewGuid(),
                           RecordId: popup2Detail.Entity.Id,
                           FormatChat: popup2Detail.Entity.FormatChat,
-                          Icon: popup2Detail.Entity.Icon,
+                          Icon: Client.Token.Avatar,
                           EntityId: popup2Detail.Meta.EntityId,
                         };
                         var createConvert = await Client.Instance.PostAsync(
@@ -121,7 +121,7 @@ const AppComponent = ({ editForm }) => {
                           Id: editForm.Uuid7.NewGuid(),
                           RecordId: popupDetail.Entity.Id,
                           FormatChat: popupDetail.Entity.FormatChat,
-                          Icon: popupDetail.Entity.Icon,
+                          Icon: Client.Token.Avatar,
                           EntityId: popupDetail.Meta.EntityId,
                         };
                         var createConvert = await Client.Instance.PostAsync(

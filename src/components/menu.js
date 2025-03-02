@@ -160,6 +160,9 @@ export class MenuComponent extends EditableComponent {
           Html.Instance.Event(EventType.ContextMenu, (e) =>
             this.MenuItemContextMenu(e, item)
           );
+          if(item.Name == this.CurrentHref){
+            Html.Instance.ClassName("active");
+          }
           if (check) {
             if (item.InverseParent.some((x) => x.Name == this.CurrentHref)) {
               Html.Instance.ClassName("open");
@@ -169,11 +172,6 @@ export class MenuComponent extends EditableComponent {
           Html.Instance.A.DataAttr("page", item.Name).ClassName(
             check ? "main-menu has-dropdown" : "link"
           );
-          if (!check) {
-            if (this.CurrentHref == item.Name) {
-              Html.Instance.ClassName("active");
-            }
-          }
           Html.Instance.Event(EventType.Click, (e) =>
             this.MenuItemClick(e, item)
           )
