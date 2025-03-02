@@ -110,6 +110,16 @@ export class LoginBL extends EditForm {
                       className="input ap-lg-input"
                       name="Password"
                       type="password"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          document
+                            .querySelector(".login-form-inputs")
+                            .dispatchEvent(
+                              new Event("submit", { bubbles: true })
+                            );
+                        }
+                      }}
                     />
                   </div>
                   <div className="text-right" style={{ display: "flex" }}>
