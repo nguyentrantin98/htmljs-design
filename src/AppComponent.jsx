@@ -52,6 +52,18 @@ const AppComponent = ({ editForm }) => {
     }
     actionToggle(e);
   };
+
+  const updateView = () => {
+    editForm.OpenTab("chat-editor", {});
+    window.setTimeout(() => {
+      var tab = ChromeTabs.tabs.find((x) => x.content.Show);
+      var chat = tab.content.ChildCom.find((x) => x.ComponentType == "Chat");
+      if (chat) {
+        chat.UpdateView();
+      }
+    }, 500);
+  };
+
   return (
     <Provider store={store}>
       <div className="shadow-header"></div>
@@ -127,10 +139,10 @@ const AppComponent = ({ editForm }) => {
                         }
                       }
                     } else {
-                      this.updateView();
+                      updateView();
                     }
                   } else {
-                    this.updateView();
+                    updateView();
                   }
                 }}
               >
@@ -147,9 +159,6 @@ const AppComponent = ({ editForm }) => {
           <a className="text">
             <img src={Client.Token.Vendor.Logo} />
           </a>
-          <div className="close-sidebar action-toggle">
-            <i className="ti-close"></i>
-          </div>
         </div>
         <div className="search-content p-2"></div>
         <div className="sidebar-content"></div>

@@ -47,17 +47,6 @@ export class App {
     this.MyApp.EditForm.Meta = this.Meta;
   }
 
-  updateView() {
-    this.MyApp.EditForm.OpenTab("chat-editor", {});
-    window.setTimeout(() => {
-      var tab = ChromeTabs.tabs.find((x) => x.content.Show);
-      var chat = tab.content.ChildCom.find((x) => x.ComponentType == "Chat");
-      if (chat) {
-        chat.UpdateView();
-      }
-    }, 500);
-  }
-
   async getExchangeRate() {
     var rate = await fetch(
       "https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"

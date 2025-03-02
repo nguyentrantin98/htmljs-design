@@ -46,43 +46,33 @@ export class LoginBL extends EditForm {
           Password: password,
           AutoSignIn: true,
         };
-        const tcs = new Promise((resolve, reject) => {
-          // @ts-ignore
-          Client.Instance.SubmitAsync({
+        try {
+          var res = await Client.Instance.SubmitAsync({
             Url: `/api/auth/login`,
             JsonData: JSON.stringify(login),
             IsRawString: true,
             Method: "POST",
             AllowAnonymous: true,
-          })
-            .then((res) => {
-              if (!res) {
-                resolve(false);
-                return;
-              }
-              Client.Token = res;
-              this.InitFCM();
-              if (this.SignedInHandler) {
-                this.SignedInHandler(Client.Token);
-              }
-              resolve(true);
-              this.Dispose();
-              window.history.pushState(null, "Home", "");
-              App.Instance.RenderLayout()
-                .then(() => {
-                  this.InitAppIfEmpty();
-                })
-                .finally(() => {
-                  window.setTimeout(() => {
-                    Toast.Success(`Hello ` + Client.Token.FullName);
-                  }, 200);
-                });
+          });
+          Client.Token = res;
+          this.InitFCM();
+          if (this.SignedInHandler) {
+            this.SignedInHandler(Client.Token);
+          }
+          this.Dispose();
+          window.history.pushState(null, "Home", "");
+          App.Instance.RenderLayout()
+            .then(() => {
+              this.InitAppIfEmpty();
             })
-            .catch(() => {
-              resolve(false);
-              Toast.Warning("Invalid username or password");
+            .finally(() => {
+              window.setTimeout(() => {
+                Toast.Success(`Hello ` + Client.Token.FullName);
+              }, 200);
             });
-        });
+        } catch (error) {
+          Toast.Warning(error.message);
+        }
       };
       return (
         <>
