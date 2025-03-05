@@ -1462,6 +1462,10 @@ div {
   border-radius: 5px;
 }
 
+.status-bar {
+  cursor: move;
+}
+
 .loader {
   margin: auto;
   top: 50%;
