@@ -1471,7 +1471,7 @@ div {
   display: grid;
   border: 4px solid #0000;
   border-radius: 50%;
-  border-color: #ccc #0000;
+  border-color: #f17f2b #0000;
   animation: l16 1s infinite linear;
 }
 .loader::before,
@@ -1483,7 +1483,7 @@ div {
   border-radius: 50%;
 }
 .loader::before {
-  border-color: #f03355 #0000;
+  border-color: #8c36d8 #0000;
   animation: inherit; 
   animation-duration: .5s;
   animation-direction: reverse;
@@ -3677,8 +3677,20 @@ table.table {
 }
 
 .container-login[bg="100"] {
-  background-image: url(/assets/images/loginapp.png);
-  background-size: contain;
+    --s: 160px; /* control the size*/
+    --c1: #1c2130;
+    --c2: #b3e099;
+      
+    --_c:5%,#0000 75%,var(--c1) 0;
+    --_g:/var(--s) var(--s) conic-gradient(at var(--_c));
+    --_l:/var(--s) var(--s) conic-gradient(at 50% var(--_c));
+    background:
+      0 calc(7*var(--s)/10) var(--_l),
+      calc(var(--s)/2) calc(var(--s)/5) var(--_l),
+      calc(var(--s)/5) 0 var(--_g),
+      calc(7*var(--s)/10) calc(var(--s)/2) var(--_g),
+      conic-gradient(at 90% 90%,var(--c1) 75%,var(--c2) 0)
+      0 0/calc(var(--s)/2) calc(var(--s)/2);
 }
 
 .input-select {
