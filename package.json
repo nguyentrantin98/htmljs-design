@@ -39,6 +39,7 @@
     "react-toastify": "^11.0.3",
     "reconnecting-websocket": "^4.4.0",
     "slim-select": "^2.10.0",
+    "sortablejs": "^1.15.6",
     "tinymce": "^7.6.1",
     "uuid": "^11.0.5",
     "vite": "^6.1.0",
