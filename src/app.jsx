@@ -227,7 +227,7 @@ export class App {
           Client.Instance.GetByIdAsync(tab.Meta.EntityId, [
             fName.params.Id,
           ]).then((data) => {
-            if (data.data[0]) {
+            if (data && data.data && data.data[0]) {
               tab.OpenPopup(fName.params.Popup, data.data[0]);
               window.setTimeout(() => {
                 if (fName.params.Popup2) {
