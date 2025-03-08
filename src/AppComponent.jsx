@@ -8,6 +8,7 @@ import store from "./redux/store.js";
 import { Provider } from "react-redux";
 import UserActive from "./components/UserActive.jsx";
 import ChatBot from "./components/ChatBot.jsx";
+import ExchangeRate from "./components/ExchangeRate.jsx";
 const AppComponent = ({ editForm }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024);
   useEffect(() => {
@@ -164,27 +165,9 @@ const AppComponent = ({ editForm }) => {
         <div className="sidebar-content"></div>
       </nav>
       <div className="main-content" id="tab-content"></div>
-      <div className="settings">
-        <div className="settings-content">
-          <ul>
-            <li className="fix-header">
-              <div className="fix-header-wrapper">
-                <div className="form-check form-switch lg">
-                  <a
-                    href="https://portal.vietcombank.com.vn/Usercontrols/TVPortal.TyGia/pXML.aspx"
-                    target="_blank"
-                  >
-                    Vietcombank Exchange
-                  </a>
-                </div>
-              </div>
-            </li>
-          </ul>
-          <ul className="exchange-rate"></ul>
-        </div>
-      </div>
       <ToastContainer />
       <ChatBot />
+      <ExchangeRate />
     </Provider>
   );
 };

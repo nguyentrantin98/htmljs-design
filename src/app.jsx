@@ -62,12 +62,7 @@ export class App {
       Transfer: "1",
       Sell: "1",
     });
-    var element = document.querySelector(".exchange-rate");
-    element.innerHTML = "";
     const ext = json.reduce((acc, cur) => {
-      var li = document.createElement("li");
-      li.textContent = cur.CurrencyCode + " : " + cur.Transfer;
-      element.appendChild(li);
       acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(
         cur.Transfer.replace(/,/g, "")
       );

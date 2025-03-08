@@ -61,7 +61,7 @@ const ChatBot = () => {
         <>
             {/* Floating Chat Icon */}
             <div className="chat-icon" onClick={toggleChatWindow}>
-                <FaRobot size={30} color="white" />
+                <FaRobot size={25} color="white" />
             </div>
 
             {/* Chat Window */}

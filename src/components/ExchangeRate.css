@@ -1,0 +1,62 @@
+/* ExchangeRate.css */
+
+.chat-icon2 {
+    position: fixed;
+    top: 29%;
+    right: 2px;
+    background-color: #007bff;
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    z-index: 2;
+  }
+  
+  .chat-icon2:hover {
+    background-color: #0056b3;
+  }
+  
+  .settings {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .settings-content {
+    padding: 15px;
+  }
+  
+  .fix-header {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .exchange-rate {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  .exchange-rate li {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .exchange-rate li:last-child {
+    border-bottom: none;
+  }
+  
