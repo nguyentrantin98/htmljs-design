@@ -1,5 +1,0 @@
-[build]
-  command = "npm run build1"
-  publish = "dist/"
-  [permalinks]
-    post = "/:year/:month/:day/:slug/" 
