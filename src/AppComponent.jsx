@@ -100,7 +100,11 @@ const AppComponent = ({ editForm }) => {
                         var form = {
                           Id: editForm.Uuid7.NewGuid(),
                           RecordId: popup2Detail.Entity.Id,
-                          FormatChat: popup2Detail.Entity.FormatChat,
+                          FeatureName: popup2Detail.Meta.Name,
+                          Label: popup2Detail.Meta.Label,
+                          FormatChat:
+                            popup2Detail.Entity.FormatChat ||
+                            popup2Detail.Entity.Id,
                           Icon: Client.Token.Avatar,
                           EntityId: popup2Detail.Meta.EntityId,
                         };
@@ -121,6 +125,8 @@ const AppComponent = ({ editForm }) => {
                         var form = {
                           Id: editForm.Uuid7.NewGuid(),
                           RecordId: popupDetail.Entity.Id,
+                          FeatureName: popupDetail.Meta.Name,
+                          Label: popupDetail.Meta.Label,
                           FormatChat: popupDetail.Entity.FormatChat,
                           Icon: Client.Token.Avatar,
                           EntityId: popupDetail.Meta.EntityId,
