@@ -1479,7 +1479,7 @@ div {
   animation: l16 1s infinite linear;
 }
 .loader::before,
-.loader::after {    
+.loader::after {
   content: "";
   grid-area: 1/1;
   margin: 2px;
@@ -1488,15 +1488,17 @@ div {
 }
 .loader::before {
   border-color: #8c36d8 #0000;
-  animation: inherit; 
-  animation-duration: .5s;
+  animation: inherit;
+  animation-duration: 0.5s;
   animation-direction: reverse;
 }
 .loader::after {
   margin: 8px;
 }
-@keyframes l16 { 
-  100%{transform: rotate(1turn)}
+@keyframes l16 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
 
 .popup-body .backdrop {
@@ -3681,20 +3683,19 @@ table.table {
 }
 
 .container-login[bg="100"] {
-    --s: 160px; /* control the size*/
-    --c1: #1c2130;
-    --c2: #b3e099;
-      
-    --_c:5%,#0000 75%,var(--c1) 0;
-    --_g:/var(--s) var(--s) conic-gradient(at var(--_c));
-    --_l:/var(--s) var(--s) conic-gradient(at 50% var(--_c));
-    background:
-      0 calc(7*var(--s)/10) var(--_l),
-      calc(var(--s)/2) calc(var(--s)/5) var(--_l),
-      calc(var(--s)/5) 0 var(--_g),
-      calc(7*var(--s)/10) calc(var(--s)/2) var(--_g),
-      conic-gradient(at 90% 90%,var(--c1) 75%,var(--c2) 0)
-      0 0/calc(var(--s)/2) calc(var(--s)/2);
+  --s: 160px; /* control the size*/
+  --c1: #1c2130;
+  --c2: #b3e099;
+
+  --_c: 5%, #0000 75%, var(--c1) 0;
+  --_g: /var(--s) var(--s) conic-gradient(at var(--_c));
+  --_l: /var(--s) var(--s) conic-gradient(at 50% var(--_c));
+  background: 0 calc(7 * var(--s) / 10) var(--_l),
+    calc(var(--s) / 2) calc(var(--s) / 5) var(--_l),
+    calc(var(--s) / 5) 0 var(--_g),
+    calc(7 * var(--s) / 10) calc(var(--s) / 2) var(--_g),
+    conic-gradient(at 90% 90%, var(--c1) 75%, var(--c2) 0) 0 0 /
+      calc(var(--s) / 2) calc(var(--s) / 2);
 }
 
 .input-select {
@@ -4110,7 +4111,7 @@ table.table {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 250px;
+  max-width: 80%;
 }
 
 .message {
@@ -4140,7 +4141,7 @@ table.table {
     padding: 8px;
   }
 
-  .discussions{
+  .discussions {
     width: 20%;
   }
 
@@ -4207,7 +4208,7 @@ table.table {
 .message {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .message .photo {
@@ -4249,7 +4250,7 @@ table.table {
 .message.text-only {
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 }
 
 .message.text-only .response {
@@ -4266,7 +4267,7 @@ table.table {
 .response-time {
   font-size: 12px;
   color: #999;
-  margin-left: 50px;
+  margin-left: 62px;
 }
 
 .response-time {
@@ -4319,3 +4320,28 @@ table.table {
   border-radius: 5px;
   opacity: 0.7;
 }
+
+.response {
+  position: relative;
+}
+
+.response .fa-trash {
+  position: absolute;
+  left: -21px;
+  top: 10px;
+  color: #000;
+  visibility: hidden;
+}
+
+.message:hover .fa-trash {
+  visibility: unset;
+}
+
+.discussions .message img{
+max-width: 60px;
+}
+
+
+.chat .message img{
+  max-width: 400px;
+  }
