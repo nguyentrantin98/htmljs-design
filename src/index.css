@@ -4055,11 +4055,11 @@ table.table {
 .discussions {
   overflow: auto;
   max-height: calc(100vh - 6rem);
-  width: 40%;
+  width: 30%;
 }
 
 .chat-container .chat {
-  width: 60%;
+  width: 70%;
 }
 
 /* Danh sách cuộc trò chuyện */
@@ -4181,7 +4181,7 @@ table.table {
   display: flex;
   align-items: center;
   padding: 10px 15px;
-  background: #007bff;
+  background: #733bba;
   color: white;
 }
 
@@ -4343,5 +4343,5 @@ max-width: 60px;
 
 
 .chat .message img{
-  max-width: 400px;
+  max-width: 100%;
   }
