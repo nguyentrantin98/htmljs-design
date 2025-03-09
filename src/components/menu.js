@@ -6,6 +6,7 @@ import {
   ComponentExt,
   TabEditor,
   ChromeTabs,
+  LangSelect,
 } from "../../lib";
 import EventType from "../../lib/models/eventType.js";
 import { ElementType } from "../../lib/models/elementType.js";
@@ -72,7 +73,7 @@ export class MenuComponent extends EditableComponent {
                   actFeature.filter(
                     (x) =>
                       !x.InverseParent &&
-                      x.Label.toLowerCase().includes(
+                      LangSelect.Get(x.Label).toLowerCase().includes(
                         e.target.value.trim().toLowerCase()
                       )
                   )
@@ -160,7 +161,7 @@ export class MenuComponent extends EditableComponent {
           Html.Instance.Event(EventType.ContextMenu, (e) =>
             this.MenuItemContextMenu(e, item)
           );
-          if(item.Name == this.CurrentHref){
+          if (item.Name == this.CurrentHref) {
             Html.Instance.ClassName("active");
           }
           if (check) {
