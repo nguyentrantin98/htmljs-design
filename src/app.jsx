@@ -15,6 +15,7 @@ import { LoginBL } from "./forms/login.jsx";
 import "./slimselect.css";
 import "./index.css";
 import AppComponent from "./AppComponent.jsx";
+import Decimal from "decimal.js";
 
 export class App {
   /** @type {Page} */
@@ -63,30 +64,15 @@ export class App {
       Sell: "1",
     });
     const ext = json.reduce((acc, cur) => {
-      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(
-        cur.Transfer.replace(/,/g, "")
-      );
+      acc[cur.CurrencyCode] = Decimal(cur.Transfer.replace(/,/g, ""));
       return acc;
     }, {});
-    var usd = this.MyApp.EditForm.Decimal(
+    var exUSD = Decimal(
       json.find((x) => x.CurrencyCode == "USD").Transfer.replace(/,/g, "")
     );
     const ext1 = json.reduce((acc, cur) => {
-      const eurToUsdRate = this.MyApp.EditForm.Decimal(1).div(
-        this.MyApp.EditForm.Decimal(cur.Transfer.replace(/,/g, ""))
-      ); // Tỷ giá EUR => USD
-      if (cur.CurrencyCode == "VND") {
-        const multipliedRate = eurToUsdRate.mul(usd);
-        acc[cur.CurrencyCode] =
-          this.MyApp.EditForm.Decimal(1).div(multipliedRate);
-      } else {
-        if (cur.CurrencyCode == "USD") {
-          acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(1);
-        } else {
-          const multipliedRate = eurToUsdRate.mul(usd);
-          acc[cur.CurrencyCode] = multipliedRate;
-        }
-      }
+      const eurToUsdRate = Decimal(cur.Transfer.replace(/,/g, "")).div(exUSD);
+      acc[cur.CurrencyCode] = eurToUsdRate;
       return acc;
     }, {});
     EditableComponent.ExchangeRateVND = ext;
@@ -182,11 +168,11 @@ export class App {
     var dataExt = await fetch(Client.api + "/api/exchangeRate?t=dev");
     var rsExt = await dataExt.json();
     const ext2 = rsExt.reduce((acc, cur) => {
-      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateSaleVND);
+      acc[cur.CurrencyCode] = Decimal(cur.RateSaleVND);
       return acc;
     }, {});
     const ext3 = rsExt.reduce((acc, cur) => {
-      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateSaleUSD);
+      acc[cur.CurrencyCode] = Decimal(cur.RateSaleUSD);
       return acc;
     }, {});
     EditableComponent.ExchangeRateSaleVND = ext2;
@@ -195,11 +181,11 @@ export class App {
     localStorage.setItem("ExchangeRateSaleUSD", JSON.stringify(ext3));
     //
     const ext4 = rsExt.reduce((acc, cur) => {
-      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateProfitVND);
+      acc[cur.CurrencyCode] = Decimal(cur.RateProfitVND);
       return acc;
     }, {});
     const ext5 = rsExt.reduce((acc, cur) => {
-      acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateProfitUSD);
+      acc[cur.CurrencyCode] = Decimal(cur.RateProfitUSD);
       return acc;
     }, {});
     EditableComponent.ExchangeRateProfitVND = ext4;
