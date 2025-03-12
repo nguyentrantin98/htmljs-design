@@ -96,10 +96,10 @@ export class App {
   }
 
   async Init() {
-    var data = await fetch(Client.api + "/api/dictionary");
+    var data = await fetch(Client.api + "/api/dictionary?t=dev");
     var rs = await data.json();
     try {
-      var config = await fetch(Client.api + "/api/webConfig");
+      var config = await fetch(Client.api + "/api/webConfig?t=dev");
       var rsConfig = await config.json();
       const map = rsConfig.reduce((acc, cur) => {
         acc[cur.Id] = cur.Value;
@@ -110,7 +110,7 @@ export class App {
       localStorage.setItem("ConfigNumber", 3);
     }
     try {
-      var saleFunction = await fetch(Client.api + "/api/salesFunction");
+      var saleFunction = await fetch(Client.api + "/api/salesFunction?t=dev");
       var rsSaleFunction = await saleFunction.json();
       const mapSaleFunction = rsSaleFunction.reduce((acc, cur) => {
         acc[cur.Code] = cur.IsYes;
@@ -179,7 +179,7 @@ export class App {
     }
     this.LoadByFromUrl();
     await this.getExchangeRate();
-    var dataExt = await fetch(Client.api + "/api/exchangeRate");
+    var dataExt = await fetch(Client.api + "/api/exchangeRate?t=dev");
     var rsExt = await dataExt.json();
     const ext2 = rsExt.reduce((acc, cur) => {
       acc[cur.CurrencyCode] = this.MyApp.EditForm.Decimal(cur.RateSaleVND);

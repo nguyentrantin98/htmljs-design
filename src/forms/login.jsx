@@ -48,7 +48,7 @@ export class LoginBL extends EditForm {
         };
         try {
           var res = await Client.Instance.SubmitAsync({
-            Url: `/api/auth/login`,
+            Url: `/api/auth/login?t=` + tanentCode,
             JsonData: JSON.stringify(login),
             IsRawString: true,
             Method: "POST",
@@ -302,7 +302,7 @@ export class LoginBL extends EditForm {
     this.InitAppHanlder?.(Client.Token);
     MenuComponent.Instance.Render();
     EditForm.NotificationClient = new WebSocketClient(
-      "api.nguyenduyphong.id.vn/task"
+      "api.forwardx.vn/task"
     );
   }
 
